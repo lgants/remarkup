@@ -1,3 +1,53 @@
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <form>
+      <div class="row">
+        <div class="col-sm-6 col-md-4" style="float:none; margin-left:auto; margin-right:auto">
+          <!-- <div class="thumbnail"> -->
+            <img style="max-width:200px; max-height:200px" src="/assets/default-profile.png" alt="...">
+            <div class="caption" style="margin:10px 0px">
+                <input type="file" style="max-width:200px" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+            </div>
+          <!-- </div> -->
+        </div>
+      </div><!-- thumbnail-image -->
+      <div class="form-group">
+        <label>First Name</label>
+        <input class="form-control" placeholder="first name">
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input class="form-control" placeholder="last name">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      <div class="form-group">
+        <label>Organization</label>
+        <input class="form-control" placeholder="organization">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password Confirmation</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <label for="exampleTextarea">Bio</label>
+        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>
+</div> <!-- create-user-form -->
+
+
+
 <%= form_for(user) do |f| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
@@ -22,18 +72,48 @@
   </div>
 
   <div class="field">
-    <%= f.label :username %>
-    <%= f.text_field :username %>
-  </div>
-
-  <div class="field">
     <%= f.label :email %>
     <%= f.text_field :email %>
   </div>
 
   <div class="field">
+    <%= f.label :phone %>
+    <%= f.number_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :organization %>
+    <%= f.text_field :organization %>
+  </div>
+
+  <div class="field">
     <%= f.label :password_digest %>
     <%= f.text_field :password_digest %>
+  </div>
+
+  <div class="field">
+    <%= f.label :biography %>
+    <%= f.text_area :biography %>
+  </div>
+
+  <div class="field">
+    <%= f.label :default_color %>
+    <%= f.text_field :default_color %>
+  </div>
+
+  <div class="field">
+    <%= f.label :public_figure %>
+    <%= f.check_box :public_figure %>
+  </div>
+
+  <div class="field">
+    <%= f.label :entity %>
+    <%= f.check_box :entity %>
+  </div>
+
+  <div class="field">
+    <%= f.label :moderator %>
+    <%= f.check_box :moderator %>
   </div>
 
   <div class="field">
