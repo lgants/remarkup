@@ -3,12 +3,15 @@ class CreateUsers < ActiveRecord::Migration[5.0]
     create_table :users do |t|
       t.string :first_name
       t.string :last_name
-      t.string :username
       t.string :email
+      t.integer :phone
+      t.string :organization
       t.string :password_digest
-      t.boolean :subscriber, default: false
-      t.boolean :author, default: false
-      t.boolean :figure, default: false
+      t.text :biography
+      t.string :default_color
+      t.boolean :public_figure, default: false
+      t.boolean :entity, default: false
+      t.boolean :moderator, default: false
       t.boolean :admin, default: false
 
       t.timestamps
