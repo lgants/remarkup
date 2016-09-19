@@ -1,16 +1,11 @@
 source 'https://rubygems.org'
 
 
+# Use Boostrap Datetimepicker for calendars
 gem 'bootstrap-datepicker-rails'
-
-
-gem 'momentjs-rails', '>= 2.9.0'
-
-# Use boostrap3 datetimepicker for calendars
-gem 'bootstrap3-datetimepicker-rails', '~> 4.17.42'
-# Use font awesome for additional glyphicons
+# Use Font Awesome for additional glyphicons
 gem 'font-awesome-rails'
-# Use bcrypt for managing passwords
+# Use Bcrypt for managing passwords
 gem 'bcrypt', '~> 3.1.11'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'

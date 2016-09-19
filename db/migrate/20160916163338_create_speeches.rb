@@ -3,9 +3,10 @@ class CreateSpeeches < ActiveRecord::Migration[5.0]
     create_table :speeches do |t|
       t.string :title
       t.text :content
-      t.datetime :speech_date
+      t.string :speech_date
       t.string :venue
       t.string :city
+      t.string :state
       t.string :first_name
       t.string :last_name
       t.integer :public_figure_id

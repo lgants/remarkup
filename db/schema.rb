@@ -21,9 +21,10 @@ ActiveRecord::Schema.define(version: 20160916163847) do
   create_table "speeches", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
-    t.datetime "speech_date"
+    t.string   "speech_date"
     t.string   "venue"
     t.string   "city"
+    t.string   "state"
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "public_figure_id"
