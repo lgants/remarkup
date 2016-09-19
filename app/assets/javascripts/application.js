@@ -11,14 +11,23 @@
 // about supported directives.
 //
 //= require jquery
-//= require bootstrap-datepicker
 //= require jquery_ujs
+//= require bootstrap-datepicker
 //= require turbolinks
 //= require_tree .
 
 
+//needed to make dropdown work again in nav
+$(document).ready(function () {
+    $('.dropdown-toggle').dropdown();
+});
+
+//datepicker
 $(document).ready(function(){
-  $('.datepicker').datepicker();
+  $('.datepicker').datepicker({
+    format: 'mm/dd/yyyy',
+    autoclose: true,
+  });
 });
 
 
