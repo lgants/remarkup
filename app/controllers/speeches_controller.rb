@@ -25,6 +25,7 @@ class SpeechesController < ApplicationController
   # POST /speeches.json
   def create
     @speech = Speech.new(speech_params)
+    @speech.creator_id = current_user.id
 
     respond_to do |format|
       if @speech.save

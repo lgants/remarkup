@@ -13,11 +13,17 @@
 
   <body>
     <%= render "/layouts/navbar" %>
-    <div class="row">
-      <%= render "/layouts/sidebar" %>
+      <% if signed_in? %>
+        <%= render "/layouts/sidebar" %>
+      <% end %>
+      <div class="row">
       <!-- Main Content -->
       <div class="container-fluid">
+        <% if signed_in? %>
           <div class="side-body">
+        <% else %>
+          <div>
+        <% end %>
             <br>
             <br>
             <br>

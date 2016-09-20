@@ -1,0 +1,68 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= form_for(user) do |f| %>
+      <% if group.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+          <ul>
+          <% group.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <form>
+        <div class="row">
+          <div class="col-sm-6 col-md-4" style="float:none; margin-left:auto; margin-right:auto">
+            <!-- <div class="thumbnail"> -->
+              <img style="max-width:200px; max-height:200px" src="/assets/default-profile.png" alt="...">
+              <div class="caption" style="margin:10px 0px">
+                  <input type="file" style="max-width:200px" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+              </div>
+            <!-- </div> -->
+          </div>
+        </div><!-- thumbnail-image -->
+        <div class="form-group">
+          <label>Group Name</label>
+          <%= f.text_field :name, class: "form-control", placeholder: "group name..."%>
+        </div>
+        <div class="form-group">
+          <label for="exampleTextarea">Description</label>
+          <%= f.text_area :description, class: "form-control", rows: "3", placeholder: "description..."  %>
+        </div>
+      <%= f.button class: "btn btn-default", type: "submit" do %>
+        Sign Up
+      <% end %>
+      </form>
+    <% end %>
+  </div>
+</div> <!-- create-group-form -->
+
+
+
+
+
+
+<%= form_for(group) do |f| %>
+
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :creator_id %>
+    <%= f.number_field :creator_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

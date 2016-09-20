@@ -1,43 +1,5 @@
 <% @speeches.each do |speech| %>
-
-<div class="panel panel-default">
-  <div class="panel-body">
-    <div class="row">
-        <div class="media">
-          <a class="pull-left" href="#" style="margin:0; padding:0">
-            <img class="media-object" style="max-height:60px;max-width:60px" src="/assets/default-profile.png">
-          </a>
-          <div class="media-body" style="padding-left:10px">
-              <h3 style="margin-top:0px; margin-bottom:0px"><%= speech.first_name %> <%= speech.last_name %> at <%= speech.venue %> on <%= speech.format_date %></h3>
-              <h5><i class="fa fa-check-circle" aria-hidden="true"></i> Created by <%= speech.creator_id %></h5>
-          </div>
-        </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12" style="margin-left:0px; padding-left:0px; margin-right:0px; padding-right:0px">
-        <h4 style="padding-bottom:0px">
-          <%= speech.title %>
-        </h4>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12 nopadding">
-        <p class="nopadding">
-            <%= speech.content %>
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12" style="margin-left:0px; padding-left:0px; margin-right:0px; padding-right:0px; margin-top:10px">
-        <p class="nopadding">
-          <span style="float:left"><a href="#">read more...</a></span>
-          <span style="float:right">14 markups</span>
-        </p>
-      </div>
-    </div>
-  </div>
-</div><!-- show-speech-form -->
-
+  <%= render partial: 'speech_partial', locals: { speech: speech } %>
 <% end %>
 
 

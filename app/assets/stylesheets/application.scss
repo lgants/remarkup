@@ -14,7 +14,9 @@
  *= require bootstrap-datepicker3
  *= require font-awesome
  *= require_self
+
  */
+
 
 
  .nopadding {
@@ -25,6 +27,13 @@
     padding-left: 0 !important;
     margin-left: 0 !important;
  }
+
+
+// adds padding beneath the nav bar
+// body {
+//   padding-top: 10%;
+// }
+
 
 //center divs
  .col-centered{
