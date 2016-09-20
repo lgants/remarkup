@@ -3,7 +3,7 @@ class CreateHighlights < ActiveRecord::Migration[5.0]
     create_table :highlights do |t|
       t.integer :user_id
       t.integer :speech_id
-      t.text :tags
+      t.string :excerpts
     end
   end
 end

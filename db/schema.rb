@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20160919173300) do
   create_table "highlights", force: :cascade do |t|
     t.integer "user_id"
     t.integer "speech_id"
-    t.text    "tags"
+    t.string  "excerpts"
   end
 
   create_table "speeches", force: :cascade do |t|
