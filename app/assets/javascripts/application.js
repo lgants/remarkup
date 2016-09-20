@@ -89,5 +89,3 @@ $(function () {
 
     });
 });
-
-$(function(){ $(document).foundation(); });
