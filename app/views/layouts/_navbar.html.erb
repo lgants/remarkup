@@ -8,8 +8,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">brandname</a>
+      <%= link_to root_path, class: "navbar-brand" do %>
+          <i class="fa fa-pencil" aria-hidden="true"></i> brandname
+      <% end %>
+      <!-- <a class="navbar-brand" href="/speeches">brandname</a> -->
     </div>
+
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

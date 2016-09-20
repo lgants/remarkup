@@ -1,5 +1,7 @@
 class Speech < ApplicationRecord
   has_many :highlights
+  belongs_to :creator, :class_name => "User"
+
 
   def format_date
     date = self.speech_date.split("/")
