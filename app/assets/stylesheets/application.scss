@@ -14,11 +14,12 @@
  *= require bootstrap-datepicker3
  *= require font-awesome
  *= require_self
-
  */
 
+ @import 'foundation-icons';
 
-//popover styling 
+
+//popover styling
  .popover{
     border:none;
     border-radius:unset;

@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 
+gem 'foundation-icons-sass', '~> 1.0', '>= 1.0.3'
 #Use faker to genererate seed data
 gem 'faker', '~> 1.6.6'
 # Use rename to rename the app name

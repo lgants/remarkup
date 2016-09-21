@@ -61,6 +61,8 @@ GEM
     ffi (1.9.14)
     font-awesome-rails (4.6.3.1)
       railties (>= 3.2, < 5.1)
+    foundation-icons-sass (1.0.3)
+      sass (~> 3)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -178,6 +180,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   faker (~> 1.6.6)
   font-awesome-rails
+  foundation-icons-sass (~> 1.0, >= 1.0.3)
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
