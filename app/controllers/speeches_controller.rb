@@ -10,6 +10,7 @@ class SpeechesController < ApplicationController
   # GET /speeches/1
   # GET /speeches/1.json
   def show
+    @markup_li = true
   end
 
   # GET /speeches/new

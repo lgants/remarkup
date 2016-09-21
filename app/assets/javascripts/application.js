@@ -17,6 +17,80 @@
 //= require_tree .
 
 
+
+//record text selection with jquery and ajax
+//source: https://davidwalsh.name/text-selection-ajax
+//other site helpful when changing color http://stackoverflow.com/questions/795600/change-highlight-color
+/* attempt to find a text selection */
+function getSelected() {
+	if(window.getSelection) { return window.getSelection(); }
+	else if(document.getSelection) { return document.getSelection(); }
+	else {
+		var selection = document.selection && document.selection.createRange();
+		if(selection.text) { return selection.text; }
+		return false;
+	}
+	return false;
+}
+/* create sniffer */
+$(document).ready(function() {
+	$('#content-area').mouseup(function() {
+		var selection = getSelected();
+		if(selection && (selection = new String(selection).replace(/^\s+|\s+$/g,''))) {
+			$.ajax({
+				type: 'post',
+				url: 'ajax-selection-copy.php',
+				data: 'selection=' + encodeURI(selection)
+			});
+		}
+	});
+});
+
+
+
+
+
+//popover with form
+//made edits, source: http://jsfiddle.net/apougher/rjRwV/
+$(function(){
+    $('#login').popover({
+
+        placement: 'bottom',
+        // title: 'Popover Form',
+        html:true,
+        content:  $('#myForm').html()
+    }).on('click', function(){
+      // had to put it within the on click action so it grabs the correct info on submit
+      $('.btn-primary').click(function(){
+       $('#result').after("form submitted by " + $('#email').val())
+        $.post('/echo/html/',  {
+            email: $('#email').val(),
+            name: $('#name').val(),
+            gender: $('#gender').val()
+        }, function(r){
+          $('#pops').popover('hide')
+          $('#result').html('resonse from server could be here' )
+        })
+      })
+  })
+})
+
+
+
+//enable popovers
+// $(function () {
+//   $('[data-toggle="popover"]').popover();
+// });
+
+
+//color selector
+$(function() {
+    $('#cp4').colorpicker().on('changeColor', function(e) {
+        $('#cp4')[0].style.backgroundColor = e.color.toHex();
+    });
+});
+
+
 //needed to make dropdown work again in nav
 $(document).ready(function () {
     $('.dropdown-toggle').dropdown();

@@ -1,6 +1,10 @@
 source 'https://rubygems.org'
 
 
+#Use faker to genererate seed data
+gem 'faker', '~> 1.6.6'
+# Use rename to rename the app name
+gem 'rename'
 # Use Boostrap Datetimepicker for calendars
 gem 'bootstrap-datepicker-rails'
 # Use Font Awesome for additional glyphicons
