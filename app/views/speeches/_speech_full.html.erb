@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12 nopadding">
+      <div id="content-div" class="col-lg-12 col-md-12 col-sm-12 nopadding">
         <p class="nopadding" id="main-record-index">
           <%= @speech.content %>
         </p>
@@ -27,3 +27,48 @@
     </div>
   </div>
 </div><!-- show-full -->
+<script type="text/javascript">
+$(document).ready(function() {
+var selectedHighlights = [];
+
+$('#add-highlights-button').on('click', function(e){
+  console.log("clicked add-highlights-button");
+  e.stopPropogation();
+  var contentDiv = document.getElementById("content-div");
+});
+
+$("#main-record-index").on('mouseup', function(){
+  console.log("clicked main record index", this);
+  var result = getSelectionCharOffsetsWithin(this);
+  selectedHighlights.push("[" + result.start + ": " + result.end + "]");
+  alert(selectedHighlights);
+})
+
+
+function getSelectionCharOffsetsWithin(element) {
+  var start = 0, end = 0;
+  var sel, range, priorRange;
+  if (typeof window.getSelection != "undefined") {
+    range = window.getSelection().getRangeAt(0)
+    priorRange = range.cloneRange();
+    priorRange.selectNodeContents(element);
+    priorRange.setEnd(range.startContainer, range.startOffset);
+    start = priorRange.toString().length;
+    end = start + range.toString().length;
+  } else if (typeof document.selection != "undefined" &&
+    (sel = document.selection).type != "Control") {
+    range = sel.createRange();
+    priorRange = document.body.createTextRange();
+    priorRange.moveToElementText(element);
+    priorRange.setEndPoint("EndToStart", range);
+    start = priorRange.text.length;
+    end = start + range.text.length;
+  }
+  return {
+    start: start,
+    end: end
+  };
+}
+})
+
+</script>

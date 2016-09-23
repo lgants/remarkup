@@ -61,6 +61,22 @@ class HighlightsController < ApplicationController
     end
   end
 
+
+
+  # the function below is for testing ajax
+  def excerpts
+    @highlight = Pony.find(params[:id])
+       @pony.destroy
+
+       respond_to do |format|
+          format.html { redirect_to ponies_url }
+          format.json { head :no_content }
+          format.js   { render :layout => false }
+       end
+  end
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_highlight

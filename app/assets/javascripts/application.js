@@ -17,135 +17,68 @@
 //= require_tree .
 
 
-
-
-
-function GetSelectedText(){
-  if (window.getSelection) {  // all browsers, except IE before version 9
-    var range = window.getSelection();
-    var y = range.toString();
-   }
-   else {
-    if (document.selection.createRange) { // Internet Explorer
-      var range = document.selection.createRange();
-      alert (range.text);
-      }
-   }
-}
-
-$(document).ready(function() {
-  GetSelectedText()
-})
-
-
-
-
-//ajax tutorial: https://tests4geeks.com/tutorials/using-ajax-in-a-ruby-on-rails-app/
-//helpful to record entire snippets, http://jsfiddle.net/yeyene/GYuBv/2/
-var asdf = [];
-//helpful to record selected text indexes: http://jsfiddle.net/UuDpL/2/
-function getSelectionCharOffsetsWithin(element) {
-    var start = 0, end = 0;
-    var sel, range, priorRange;
-    if (typeof window.getSelection != "undefined") { // all browsers, except IE before version 9
-        range = window.getSelection().getRangeAt(0);
-        priorRange = range.cloneRange();
-        debugger;
-        priorRange.selectNodeContents(element);
-        priorRange.setEnd(range.startContainer, range.startOffset);
-        start = priorRange.toString().length;
-        end = start + range.toString().length;
-    } else if (typeof document.selection != "undefined" &&
-            (sel = document.selection).type != "Control") { // Internet Explorer
-        //IE
-        range = sel.createRange();
-        priorRange = document.body.createTextRange();
-        priorRange.moveToElementText(element);
-        priorRange.setEndPoint("EndToStart", range);
-        start = priorRange.text.length;
-        end = start + range.text.length;
-    }
-    asdf.push([start, end])
-    return {
-        start: start,
-        end: end
-        // x.push([start: start,
-        // end: end])
-    };
-}
-
-// if on this page
-// on click button to add highlights
-// if using IE
-  // on mouse down
-  // ...
-  // on mouse up
-// if using not defunct browser
-  // on mouse down
-  // ...
-  // on mouse up
-//on click button to persist highlights
-
-
-
-// if on this page - not sure how to make this static ???
-if (top.location.pathname === '/speeches/show/'){
-
-  var content = document.getElementById("main-record-index");
-  getSelectionCharOffsetsWithin(content);
-    /* jquery magic ... */
-}
-
-
-
-
-
-$(document).ready(function() {
-
-
-}
-
-
+//START HIGHLIGHTS SECTION
+//record highlights - not ajaxified yet
+// var selectedHighlights = [];
 //
-// function alertSelection() {
-//     var mainDiv = document.getElementById("main-record-index");
-//     var sel = getSelectionCharOffsetsWithin(mainDiv);
-//     alert(sel.start + ": " + sel.end);
+// $('#add-highlights-button').on('click', function(e){
+//   e.stopPropogation();
+//   var contentDiv = document.getElementById("content-div");
+// });
+//
+// $("#main-record-index").on('mouseup', function(){
+//   var result = getSelectionCharOffsetsWithin(contentDiv);
+//   selectedHighlights.push("[" + result.start + ": " + result.end + "]");
+//   alert(selectedHighlights);
+// })
+//
+//
+// function getSelectionCharOffsetsWithin(element) {
+//   var start = 0, end = 0;
+//   var sel, range, priorRange;
+//   if (typeof window.getSelection != "undefined") {
+//     range = window.getSelection().getRangeAt(0)
+//     priorRange = range.cloneRange();
+//     priorRange.selectNodeContents(element);
+//     priorRange.setEnd(range.startContainer, range.startOffset);
+//     start = priorRange.toString().length;
+//     end = start + range.toString().length;
+//   } else if (typeof document.selection != "undefined" &&
+//     (sel = document.selection).type != "Control") {
+//     range = sel.createRange();
+//     priorRange = document.body.createTextRange();
+//     priorRange.moveToElementText(element);
+//     priorRange.setEndPoint("EndToStart", range);
+//     start = priorRange.text.length;
+//     end = start + range.text.length;
+//   }
+//   return {
+//     start: start,
+//     end: end
+//   };
 // }
 
 
 
 
+// //save highlights - not ajaxified yet
+// $('save-highlights-button').on('click', function(){
+//
+//
+// }
+//
+// //clear highlights - not ajaxified yet
+// $('clear-highlights-button').on('click', function(){
+//
+// }
 
-//record text selection with jquery and ajax
-//source: https://davidwalsh.name/text-selection-ajax
-//other site helpful when changing color http://stackoverflow.com/questions/795600/change-highlight-color
-/* attempt to find a text selection */
-function getSelected() {
-	if(window.getSelection) { return window.getSelection(); }
-	else if(document.getSelection) { return document.getSelection(); }
-	else {
-		var selection = document.selection && document.selection.createRange();
-		if(selection.text) { return selection.text; }
-		return false;
-	}
-	return false;
-}
-/* create sniffer */
-$(document).ready(function() {
-	$('#content-area').mouseup(function() {
-		var selection = getSelected();
-		if(selection && (selection = new String(selection).replace(/^\s+|\s+$/g,''))) {
-			$.ajax({
-				type: 'post',
-				url: 'ajax-selection-copy.php',
-				data: 'selection=' + encodeURI(selection)
-			});
-		}
-	});
-});
+//load highlights if exist - not ajaxified yet
+
+  //check if highlihts exists
+  //iterate through and insert a span with a change background color
 
 
+//END HIGHLIGHTS SECTION
 
 
 
