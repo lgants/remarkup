@@ -114,6 +114,46 @@
                     Users
                     <%= render 'layouts/sidebar_search' %>
                     <%= render 'layouts/sidebar_user' %>
+
+
+                    <p> ajax setup</p>
+                    <div class="row">
+                      <div class="col-lg-8 col-md-8 col-sm-8">
+                        Name
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-sm-4 text-right nopadding-left">
+                        <button type="button" id="login" class="btn btn-default btn-mini"><i class="fa fa-paint-brush" aria-hidden="true"></i></button>
+                        <div id="myForm" class="hide popover">
+                            <form action="/echo/html/" id="popForm" method="get">
+                                <div style="text-align:center">
+                                    <i class="fa fa-square" aria-hidden="true" style="font-size: 24px; color:rgb(255, 133, 168)"></i>
+                                    <i class="fa fa-square" aria-hidden="true" style="font-size: 24px; color:rgb(255, 214, 133)"></i>
+                                    <i class="fa fa-square" aria-hidden="true" style="font-size: 24px; color:rgb(255, 243, 133)"></i>
+                                    <i class="fa fa-square" aria-hidden="true" style="font-size: 24px; color:rgb(133, 255, 208)"></i>
+                                    <i class="fa fa-square" aria-hidden="true" style="font-size: 24px; color:rgb(133, 194, 255)"></i>
+                                    <i class="fa fa-square" aria-hidden="true" style="font-size: 24px; color:rgb(255, 133, 243)"></i>
+                                    <button type="button" class="btn btn-primary" data-loading-text="Sending info.."><em class="icon-ok"></em> Save</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="...">
+                          <button type="button" class="btn btn-default btn-mini"><i class="fa fa-check" aria-hidden="true"></i></button>
+                          <button type="button" class="btn btn-default btn-mini"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        </div>
+                      </div><!-- /button-group -->
+                    </div>
+
+                    <input type="button" onclick="alertSelection()" unselectable="on" value="Get selection">
+                    <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                        <button id="add-highlights" type="button" class="btn btn-default btn-mini btn-block">Add Highlights</button>
+                        <button id="add-highlights" type="button" class="btn btn-default btn-mini btn-block">Save</button>
+                      </div>
+                    </div>
+
+
+
+
                   </div>
                 </li>
 
