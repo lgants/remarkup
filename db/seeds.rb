@@ -8,6 +8,9 @@
 
 
 
+highlight = Highlight.create(1,2,[[1,10],[15,20]]);
+
+
 user = User.create(
   first_name: "Logan",
   last_name: "Gants",

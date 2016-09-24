@@ -1,3 +1,4 @@
+
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="row">
@@ -28,47 +29,69 @@
   </div>
 </div><!-- show-full -->
 <script type="text/javascript">
+
+
+
+
 $(document).ready(function() {
-var selectedHighlights = [];
+  var selectedHighlights = [];
 
-$('#add-highlights-button').on('click', function(e){
-  console.log("clicked add-highlights-button");
-  e.stopPropogation();
-  var contentDiv = document.getElementById("content-div");
-});
+  $('#add-highlights-button').on('click', function(e){
+    console.log("clicked add-highlights-button");
+    // e.stopPropogation();
+    var contentDiv = document.getElementById("content-div");
+  });
 
-$("#main-record-index").on('mouseup', function(){
-  console.log("clicked main record index", this);
-  var result = getSelectionCharOffsetsWithin(this);
-  selectedHighlights.push("[" + result.start + ": " + result.end + "]");
-  alert(selectedHighlights);
-})
+  $("#main-record-index").on('mouseup', function(){
+    console.log("clicked main record index", this);
+    var result = getSelectionCharOffsetsWithin(this);
+    selectedHighlights.push([result.start, result.end]);
+    alert(selectedHighlights);
+  })
 
 
-function getSelectionCharOffsetsWithin(element) {
-  var start = 0, end = 0;
-  var sel, range, priorRange;
-  if (typeof window.getSelection != "undefined") {
-    range = window.getSelection().getRangeAt(0)
-    priorRange = range.cloneRange();
-    priorRange.selectNodeContents(element);
-    priorRange.setEnd(range.startContainer, range.startOffset);
-    start = priorRange.toString().length;
-    end = start + range.toString().length;
-  } else if (typeof document.selection != "undefined" &&
-    (sel = document.selection).type != "Control") {
-    range = sel.createRange();
-    priorRange = document.body.createTextRange();
-    priorRange.moveToElementText(element);
-    priorRange.setEndPoint("EndToStart", range);
-    start = priorRange.text.length;
-    end = start + range.text.length;
+  function getSelectionCharOffsetsWithin(element) {
+    var start = 0, end = 0;
+    var sel, range, priorRange;
+    if (typeof window.getSelection != "undefined") {
+      range = window.getSelection().getRangeAt(0)
+      priorRange = range.cloneRange();
+      priorRange.selectNodeContents(element);
+      priorRange.setEnd(range.startContainer, range.startOffset);
+      start = priorRange.toString().length;
+      end = start + range.toString().length;
+    } else if (typeof document.selection != "undefined" &&
+      (sel = document.selection).type != "Control") {
+      range = sel.createRange();
+      priorRange = document.body.createTextRange();
+      priorRange.moveToElementText(element);
+      priorRange.setEndPoint("EndToStart", range);
+      start = priorRange.text.length;
+      end = start + range.text.length;
+    }
+    return {
+      start: start,
+      end: end
+    };
   }
-  return {
-    start: start,
-    end: end
-  };
-}
+
+  $("#save-highlights-button").on("click", function(){
+    var url = window.location.href
+    var speechId = url.substring(url.lastIndexOf("/") + 1, url.length);
+    $.ajax({
+      type: 'POST',
+      url: "/highlights",
+      data: {data: {snippets: JSON.stringify(selectedHighlights), speech_id: speechId}},
+      dataType: "json",
+      success: function(){
+        alert("success")
+      }
+    })
+  })
+
+
+
+
 })
 
 </script>

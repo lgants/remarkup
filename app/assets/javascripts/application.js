@@ -116,11 +116,11 @@ $(function(){
 
 
 //color selector
-$(function() {
-    $('#cp4').colorpicker().on('changeColor', function(e) {
-        $('#cp4')[0].style.backgroundColor = e.color.toHex();
-    });
-});
+// $(function() {
+//     $('#cp4').colorpicker().on('changeColor', function(e) {
+//         $('#cp4')[0].style.backgroundColor = e.color.toHex();
+//     });
+// });
 
 
 //needed to make dropdown work again in nav
@@ -162,9 +162,6 @@ $("#mytable #checkall").click(function () {
 
 
 
-$(function() {
-    $('#cp2').colorpicker();
-});
 
 
 

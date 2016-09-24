@@ -1,5 +1,7 @@
 class HighlightsController < ApplicationController
-  before_action :set_highlight, only: [:show, :edit, :update, :destroy]
+  #before_action :set_highlight, only: [:show, :edit, :update, :destroy]
+  #before action check_highlight used to check whether highlight alread exists
+  before_action :check_highlight, only: [:show, :edit, :update, :destroy]
 
   # GET /highlights
   # GET /highlights.json
@@ -24,7 +26,12 @@ class HighlightsController < ApplicationController
   # POST /highlights
   # POST /highlights.json
   def create
-    @highlight = Highlight.new(highlight_params)
+    binding.pry
+    # this needs to be refactored
+    @highlight = Highlight.new()
+    @highlight.user_id = current_user.id
+    @highlight.speech_id = params[:data][:speech_id].to_i
+    @highlight.snippets = params[:data][:snippets]
 
     respond_to do |format|
       if @highlight.save
@@ -40,6 +47,7 @@ class HighlightsController < ApplicationController
   # PATCH/PUT /highlights/1
   # PATCH/PUT /highlights/1.json
   def update
+    binding.pry
     respond_to do |format|
       if @highlight.update(highlight_params)
         format.html { redirect_to @highlight, notice: 'Highlight was successfully updated.' }
@@ -63,28 +71,19 @@ class HighlightsController < ApplicationController
 
 
 
-  # the function below is for testing ajax
-  def excerpts
-    @highlight = Pony.find(params[:id])
-       @pony.destroy
-
-       respond_to do |format|
-          format.html { redirect_to ponies_url }
-          format.json { head :no_content }
-          format.js   { render :layout => false }
-       end
-  end
-
-
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_highlight
-      @highlight = Highlight.find(params[:id])
+    # def set_highlight
+    #   @highlight = Highlight.find(params[:id])
+    # end
+
+    def check_highlight
+      @highlight = Highlight.find_by(user_id: current_user.id, speech_id: params[:data][:speech_id].to_i)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def highlight_params
-      params.require(:highlight).permit(:user_id, :speech_id, :excerpts)
+      params.require(:highlight).permit(:user_id, :speech_id, :snippets)
     end
 end
