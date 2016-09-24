@@ -5,12 +5,18 @@ class SpeechesController < ApplicationController
   # GET /speeches.json
   def index
     @speeches = Speech.all
+    # filter_li used to show filter options
+    @filter_li = true
   end
 
   # GET /speeches/1
   # GET /speeches/1.json
   def show
+    #markup_li is used to show the markup panel
     @markup_li = true
+    # code below searches if the user has an existing highlight
+    # Highlight.find_by(user_id: @current_user.id, speech_id: @speech.id)
+
 
   end
 

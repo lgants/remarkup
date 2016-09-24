@@ -1,6 +1,6 @@
 class HighlightsController < ApplicationController
-  #before_action :set_highlight, only: [:show, :edit, :update, :destroy]
-  #before action check_highlight used to check whether highlight alread exists
+  before_action :set_highlight, only: [:show, :edit, :update, :destroy]
+  # before action check_highlight used to check whether highlight alread exists
   before_action :check_highlight, only: [:show, :edit, :update, :destroy]
 
   # GET /highlights
@@ -74,13 +74,13 @@ class HighlightsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    # def set_highlight
-    #   @highlight = Highlight.find(params[:id])
-    # end
-
-    def check_highlight
-      @highlight = Highlight.find_by(user_id: current_user.id, speech_id: params[:data][:speech_id].to_i)
+    def set_highlight
+      @highlight = Highlight.find(params[:id])
     end
+
+    # def check_highlight
+    #   @highlight = Highlight.find_by(user_id: current_user.id, speech_id: params[:data][:speech_id].to_i)
+    # end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def highlight_params
