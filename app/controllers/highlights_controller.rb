@@ -1,7 +1,6 @@
 class HighlightsController < ApplicationController
   before_action :set_highlight, only: [:show, :edit, :update, :destroy]
   # before action check_highlight used to check whether highlight alread exists
-  before_action :check_highlight, only: [:show, :edit, :update, :destroy]
 
   # GET /highlights
   # GET /highlights.json
@@ -26,7 +25,6 @@ class HighlightsController < ApplicationController
   # POST /highlights
   # POST /highlights.json
   def create
-    binding.pry
     # this needs to be refactored
     @highlight = Highlight.new()
     @highlight.user_id = current_user.id
@@ -35,7 +33,7 @@ class HighlightsController < ApplicationController
 
     respond_to do |format|
       if @highlight.save
-        format.html { redirect_to @highlight, notice: 'Highlight was successfully created.' }
+        format.html { redirect_to "speech/#{speech_id}", notice: 'Highlight was successfully created.' }
         format.json { render :show, status: :created, location: @highlight }
       else
         format.html { render :new }
@@ -50,6 +48,7 @@ class HighlightsController < ApplicationController
     binding.pry
     respond_to do |format|
       if @highlight.update(highlight_params)
+      # if @highlight.update(highlight_params)
         format.html { redirect_to @highlight, notice: 'Highlight was successfully updated.' }
         format.json { render :show, status: :ok, location: @highlight }
       else
@@ -64,11 +63,15 @@ class HighlightsController < ApplicationController
   def destroy
     @highlight.destroy
     respond_to do |format|
-      format.html { redirect_to highlights_url, notice: 'Highlight was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Highlight was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
+
+  def test
+    binding.pry
+  end
 
 
 
