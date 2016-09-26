@@ -4,6 +4,7 @@ class CreateGroups < ActiveRecord::Migration[5.0]
       t.string :name
       t.text :description
       t.integer :creator_id
+      t.boolean :pending, default: false
 
       t.timestamps
     end

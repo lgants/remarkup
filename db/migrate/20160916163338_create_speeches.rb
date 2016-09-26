@@ -11,7 +11,7 @@ class CreateSpeeches < ActiveRecord::Migration[5.0]
       t.string :last_name
       t.integer :public_figure_id
       t.integer :creator_id
-      t.boolean :approved, default: false
+      t.boolean :pending, default: false
       t.text :tags
 
       t.timestamps

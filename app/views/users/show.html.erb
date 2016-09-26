@@ -1,5 +1,73 @@
-
 <p id="notice"><%= notice %></p>
+
+
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12" style="margin-left:0px; padding-left:0px; margin-right:0px; padding-right:0px">
+        <h4 style="padding-bottom:0px">
+          <%= @user.first_name %> <%= @user.last_name %></p>
+        </h4>
+        <h6>
+          <%= @user.biography %>
+        </h6>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <h5>Marked <span class="badge"><%= @user.highlights.count %></span></h5>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p>Test</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <h5>Contributed <span class="badge"><%= @user.speeches.count %></span></h5>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p>Test</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- user-profile -->
+
+
+<!-- <div class="container">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+
+        <p><%= @user.first_name %> <%= @user.last_name %></p>
+        <p><%= @user.biography %></p>
+
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <p>Test</p>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+             <p>Test</p>
+           </div>
+       </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
 
 <p>
   <strong>First name:</strong>

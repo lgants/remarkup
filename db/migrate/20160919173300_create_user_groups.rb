@@ -3,7 +3,7 @@ class CreateUserGroups < ActiveRecord::Migration[5.0]
     create_table :user_groups do |t|
       t.integer :user_id
       t.integer :group_id
-      t.boolean :approved, default: false
+      t.boolean :pending, default: false
 
       t.timestamps
     end

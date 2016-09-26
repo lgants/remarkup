@@ -8,8 +8,6 @@
 
 
 
-highlight = Highlight.create(1,2,[[1,10],[15,20]]);
-
 
 user = User.create(
   first_name: "Logan",
@@ -43,7 +41,7 @@ rand(1..5).times do
     last_name: Faker::Name.last_name,
     # public_figure_id: ,
     creator_id: user.id,
-    approved: true,
+    pending: false,
     # tags: ,
   )
 end
@@ -82,7 +80,7 @@ end
       last_name: Faker::Name.last_name,
       # public_figure_id: ,
       creator_id: user.id,
-      approved: true,
+      pending: false,
       # tags: ,
     )
   end

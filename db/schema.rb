@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(version: 20160919173300) do
     t.string   "name"
     t.text     "description"
     t.integer  "creator_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "pending",     default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "highlights", force: :cascade do |t|
@@ -40,7 +41,7 @@ ActiveRecord::Schema.define(version: 20160919173300) do
     t.string   "last_name"
     t.integer  "public_figure_id"
     t.integer  "creator_id"
-    t.boolean  "approved",         default: false
+    t.boolean  "pending",          default: false
     t.text     "tags"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
@@ -49,7 +50,7 @@ ActiveRecord::Schema.define(version: 20160919173300) do
   create_table "user_groups", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "group_id"
-    t.boolean  "approved",   default: false
+    t.boolean  "pending",    default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end

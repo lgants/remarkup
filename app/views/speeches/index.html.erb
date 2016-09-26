@@ -1,59 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+
+<!-- <% if !!signed_in? %>
+  <div class="jumbotron">
+    <h1>Make Your Markup</h1>
+    <p>...</p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Sign Up</a></p>
+  </div>
+<% end %> -->
 
 
 <% @speeches.each do |speech| %>
   <%= render partial: 'speech_partial', locals: { speech: speech } %>
 <% end %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<p id="notice"><%= notice %></p>
-
-<h1>Speeches</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Speech date</th>
-      <th>Created date</th>
-      <th>Venue</th>
-      <th>City</th>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Public figure</th>
-      <th>Creator</th>
-      <th>Approved</th>
-      <th>Tags</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @speeches.each do |speech| %>
-      <tr>
-        <td><%= speech.title %></td>
-        <td><%= speech.content %></td>
-        <td><%= link_to 'Show', speech %></td>
-        <td><%= link_to 'Edit', edit_speech_path(speech) %></td>
-        <td><%= link_to 'Destroy', speech, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Speech', new_speech_path %>
