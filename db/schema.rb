@@ -42,6 +42,9 @@ ActiveRecord::Schema.define(version: 20160919173300) do
     t.integer  "public_figure_id"
     t.integer  "creator_id"
     t.boolean  "pending",          default: false
+    t.boolean  "approved",         default: false
+    t.integer  "approver_id"
+    t.boolean  "removed",          default: false
     t.text     "tags"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
@@ -68,6 +71,7 @@ ActiveRecord::Schema.define(version: 20160919173300) do
     t.boolean  "entity",          default: false
     t.boolean  "moderator",       default: false
     t.boolean  "admin",           default: false
+    t.boolean  "banned",          default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end

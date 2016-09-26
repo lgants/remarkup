@@ -63,24 +63,42 @@
         <li><%= link_to "Create Speech", "/speeches/new", method: :get %></li>
         <!-- <li class="active"><a href="#"> Active Link</a></li> -->
 
-        <% if @filter_li %>
-        <li class="panel panel-default" id="dropdown">
-          <a data-toggle="collapse" href="#dropdown-lvl1">
-            Filter <span class="caret"></span>
-          </a>
-          <!-- Dropdown level 1 -->
-          <div id="dropdown-lvl1" class="panel-collapse collapse">
-            <div class="panel-body">
-              <ul class="nav navbar-nav">
-                <li>
-                  <div>
-                    filter_options
-                  </div>
-                </li>
-              </ul>
+        <% if @search_lis %>
+          <li class="panel panel-default" id="dropdown">
+            <a data-toggle="collapse" href="#dropdown-lvl1">
+              Filter <span class="caret"></span>
+            </a>
+            <!-- Dropdown level 1 -->
+            <div id="dropdown-lvl1" class="panel-collapse collapse">
+              <div class="panel-body">
+                <ul class="nav navbar-nav">
+                  <li>
+                    <div>
+                      filter_options
+                    </div>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-        </li>
+          </li>
+          <!-- <li class="panel panel-default" id="dropdown">
+            <a data-toggle="collapse" href="#dropdown-lvl1">
+              Sort <span class="caret"></span>
+            </a>
+            <div id="dropdown-lvl1" class="panel-collapse collapse">
+              <div class="panel-body">
+                <ul class="nav navbar-nav">
+                  <li>
+                    <div>
+                      sort_options
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li> -->
+
+
         <% end %>
 
 

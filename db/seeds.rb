@@ -42,6 +42,8 @@ rand(1..5).times do
     # public_figure_id: ,
     creator_id: user.id,
     pending: false,
+    approved: true,
+    removed: false
     # tags: ,
   )
 end

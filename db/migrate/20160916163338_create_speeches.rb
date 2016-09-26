@@ -12,6 +12,9 @@ class CreateSpeeches < ActiveRecord::Migration[5.0]
       t.integer :public_figure_id
       t.integer :creator_id
       t.boolean :pending, default: false
+      t.boolean :approved, default: false
+      t.integer :approver_id 
+      t.boolean :removed, default: false
       t.text :tags
 
       t.timestamps

@@ -6,7 +6,7 @@ class SpeechesController < ApplicationController
   def index
     @speeches = Speech.all
     # filter_li used to show filter options
-    @filter_li = true
+    @search_lis = true
   end
 
   # GET /speeches/1

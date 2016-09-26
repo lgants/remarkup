@@ -13,6 +13,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.boolean :entity, default: false
       t.boolean :moderator, default: false
       t.boolean :admin, default: false
+      t.boolean :banned, default: false
 
       t.timestamps
     end
