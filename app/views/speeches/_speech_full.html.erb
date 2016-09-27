@@ -40,18 +40,19 @@
     </div>
   </div>
 </div><!-- show-full -->
+
+
 <script type="text/javascript">
 
 
 
 $(document).ready(function() {
 
-  function addSnippets(color="rgb(255, 133, 168)"){
+  function addSnippets(color, snippets){
     var content = $("#content-div > p").html();
-    var arr = JSON.parse(gon.snippets);
     var newHTML = "";
     prevIndex = 0;
-    arr.forEach(function(item){
+    snippets.forEach(function(item){
       newHTML += content.substring(prevIndex, item[0]);
       newHTML += '<span style="background-color:' + color + '">' + content.substring(item[0], item[1]) + '</span>';
       // newHTML += '<span style="background-color:yellow">' + content.substring(item[0], item[1]) + '</span>';
@@ -62,7 +63,7 @@ $(document).ready(function() {
   }
 
   if (gon.snippets){
-    addSnippets("rgb(255, 133, 168)")
+    addSnippets("rgb(255, 133, 168)", JSON.parse(gon.snippets))
   }
 
 
