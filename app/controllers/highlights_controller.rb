@@ -1,5 +1,5 @@
 class HighlightsController < ApplicationController
-  before_action :set_highlight, only: [:show, :edit, :update, :destroy]
+  before_action :set_highlight, only: [:edit, :update]
   # before action check_highlight used to check whether highlight alread exists
 
   # GET /highlights
@@ -45,12 +45,10 @@ class HighlightsController < ApplicationController
   # PATCH/PUT /highlights/1
   # PATCH/PUT /highlights/1.json
   def update
-    binding.pry
     respond_to do |format|
-      if @highlight.update(highlight_params)
-      # if @highlight.update(highlight_params)
-        format.html { redirect_to @highlight, notice: 'Highlight was successfully updated.' }
-        format.json { render :show, status: :ok, location: @highlight }
+      if @highlight.update(snippets: params[:data][:snippets])
+        format.html { redirect_to "/speeches/#{params[:data][:speech_id]}", notice: 'Highlight was successfully updated.' }
+        format.json { render :show, status: :ok, location: "/speeches/#{params[:data][:speech_id]}"}
       else
         format.html { render :edit }
         format.json { render json: @highlight.errors, status: :unprocessable_entity }
@@ -61,6 +59,7 @@ class HighlightsController < ApplicationController
   # DELETE /highlights/1
   # DELETE /highlights/1.json
   def destroy
+    @highlight = Highlight.find(params[:id])
     @highlight.destroy
     respond_to do |format|
       format.html { redirect_to root_path, notice: 'Highlight was successfully destroyed.' }
@@ -69,16 +68,18 @@ class HighlightsController < ApplicationController
   end
 
 
-  def test
-    binding.pry
-  end
+  # def highlight_id
+  #   respond_to do |format|
+  #     format.js { render :json => @highlight.id }
+  #   end
+  # end
 
 
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_highlight
-      @highlight = Highlight.find(params[:id])
+      @highlight = Highlight.find_by(speech_id: params[:data][:speech_id], user_id: current_user.id)
     end
 
     # def check_highlight

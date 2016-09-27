@@ -16,7 +16,9 @@ class SpeechesController < ApplicationController
     @markup_li = true
     # code below searches if the user has an existing highlight
     # Highlight.find_by(user_id: @current_user.id, speech_id: @speech.id)
-
+    if highlight = Highlight.find_by(speech_id: @speech.id, user_id: current_user.id)
+      gon.highlight_id = highlight.id
+    end
 
   end
 

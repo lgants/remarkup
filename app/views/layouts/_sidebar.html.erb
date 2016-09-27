@@ -181,17 +181,17 @@
                       <div class="col-lg-12 col-md-12 col-sm-12">
                         <button id="add-highlights-button" type="button" class="btn btn-default btn-mini btn-block">Add Highlights</button>
                         <button id="save-highlights-button" type="button" class="btn btn-default btn-mini btn-block">Save</button>
-                        <button id="delete-highlights-button" type="button" class="btn btn-default btn-mini btn-block">Delete</button>
+                        <!-- <button id="delete-highlights-button" type="button" class="btn btn-default btn-mini btn-block">Delete</button> -->
                         <button id="update-highlights-button" type="button" class="btn btn-default btn-mini btn-block">Update</button>
 
 
                         <!-- this will not work -->
                         <!-- need to determine how to pass javascript variables to rails -->
-                        <% if Highlight.find_by(user_id: current_user.id, speech_id: @speech.id) %>
+                        <!-- <% if Highlight.find_by(user_id: current_user.id, speech_id: @speech.id) %>
                           <% highlights = Highlight.find_by(user_id: current_user.id, speech_id: @speech.id) %>
                           <%= button_to "update", {:controller => :highlights, :action => 'update', :id => highlights.id}, :method => :patch, :class => "btn btn-default btn-mini btn-block" %>
 
-                        <% end %>
+                        <% end %> -->
 
                         <% if Highlight.find_by(user_id: current_user.id, speech_id: @speech.id) %>
                           <% highlights = Highlight.find_by(user_id: current_user.id, speech_id: @speech.id) %>

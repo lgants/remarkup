@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+#Use gon to access Ruby variables in JS variables client-side
+gem 'gon', '~> 6.0', '>= 6.0.1'
 
 gem 'foundation-icons-sass', '~> 1.0', '>= 1.0.3'
 #Use faker to genererate seed data

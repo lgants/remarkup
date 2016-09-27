@@ -1,4 +1,5 @@
 
+
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="row">
@@ -43,23 +44,25 @@
 
 
 
-
 $(document).ready(function() {
+
   var selectedHighlights = [];
 
   $('#add-highlights-button').on('click', function(e){
     console.log("clicked add-highlights-button");
     // e.stopPropogation();
     var contentDiv = document.getElementById("content-div");
+    record()
   });
 
-  $("#main-record-index").on('mouseup', function(){
-    console.log("clicked main record index", this);
-    var result = getSelectionCharOffsetsWithin(this);
-    selectedHighlights.push([result.start, result.end]);
-    alert(selectedHighlights);
-  })
-
+  function record(){
+    $("#main-record-index").on('mouseup', function(){
+      console.log("clicked main record index", this);
+      var result = getSelectionCharOffsetsWithin(this);
+      selectedHighlights.push([result.start, result.end]);
+      alert(selectedHighlights);
+    })
+  }
 
   function getSelectionCharOffsetsWithin(element) {
     var start = 0, end = 0;
@@ -99,14 +102,14 @@ $(document).ready(function() {
       }
     })
     event.preventDefault();
-  })
+  });
 
   $("#update-highlights-button").click(function(event){
     var url = window.location.href
     var speechId = url.substring(url.lastIndexOf("/") + 1, url.length);
     $.ajax({
         type: "PATCH",
-        url: "/highlight",
+        url: "/highlights/" + gon.highlight_id,
         dataType: "json",
         data: {data: {snippets: JSON.stringify(selectedHighlights), speech_id: speechId}},
         complete: function(){
@@ -114,6 +117,20 @@ $(document).ready(function() {
         }
     });
     event.preventDefault();
+  });
+
+
+  $("#delete-highlights-button").click(function(event){
+    var url = window.location.href
+    var speechId = url.substring(url.lastIndexOf("/") + 1, url.length);
+    $.ajax({
+        type: 'DELETE',
+        url: "/highlights/" + gon.highlight_id,
+        data: {data: {speech_id: speechId}},
+        complete: function(result) {
+          alert("success")
+        }
+    });
   });
 
 })
