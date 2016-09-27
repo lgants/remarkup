@@ -18,6 +18,7 @@ class SpeechesController < ApplicationController
     # Highlight.find_by(user_id: @current_user.id, speech_id: @speech.id)
     if highlight = Highlight.find_by(speech_id: @speech.id, user_id: current_user.id)
       gon.highlight_id = highlight.id
+      gon.snippets = highlight.snippets
     end
 
   end
@@ -40,7 +41,7 @@ class SpeechesController < ApplicationController
     respond_to do |format|
       if @speech.save
         format.html { redirect_to @speech, notice: 'Speech was successfully created.' }
-        format.json { render :show, status: :created, location: @speech }
+        format.json { render json: {response_id: @speech.id,upvote_class: @speech.snippets}
       else
         format.html { render :new }
         format.json { render json: @speech.errors, status: :unprocessable_entity }

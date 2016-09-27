@@ -46,6 +46,30 @@
 
 $(document).ready(function() {
 
+  function addSnippets(color="rgb(255, 133, 168)"){
+    var content = $("#content-div > p").html();
+    var arr = JSON.parse(gon.snippets);
+    var newHTML = "";
+    prevIndex = 0;
+    arr.forEach(function(item){
+      newHTML += content.substring(prevIndex, item[0]);
+      newHTML += '<span style="background-color:' + color + '">' + content.substring(item[0], item[1]) + '</span>';
+      // newHTML += '<span style="background-color:yellow">' + content.substring(item[0], item[1]) + '</span>';
+      prevIndex = item[1];
+    });
+    newHTML += content.substring(prevIndex, content.length);
+    $("#content-div > p").html(newHTML);
+  }
+
+  if (gon.snippets){
+    addSnippets("rgb(255, 133, 168)")
+  }
+
+
+
+
+
+
   var selectedHighlights = [];
 
   $('#add-highlights-button').on('click', function(e){
