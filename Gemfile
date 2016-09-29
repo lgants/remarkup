@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 #Use gon to access Ruby variables in JS variables client-side
 gem 'gon', '~> 6.0', '>= 6.0.1'
-
+gem 'bootstrap-sass'
+gem 'sass-rails'
 gem 'foundation-icons-sass', '~> 1.0', '>= 1.0.3'
 #Use faker to genererate seed data
 gem 'faker', '~> 1.6.6'
@@ -21,7 +22,7 @@ gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+# gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views

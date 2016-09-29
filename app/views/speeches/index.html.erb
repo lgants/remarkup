@@ -1,13 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 
-<!-- <% if !!signed_in? %>
-  <div class="jumbotron">
-    <h1>Make Your Markup</h1>
-    <p>...</p>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button">Sign Up</a></p>
+<% if !!!signed_in? %>
+  <div class="jumbotron" style="text-align:center">
+    <h1><i class="fi-comment-quotes"></i> remarkup<h1>
+    <h3>Make Your Markup</h3>
+    <p>In an era where soundbites live forever online, public figures increasingly use prepared remarks to communicate with the public. These remarks tend to be wordy, lengthy, and generally difficult to digest. Remarkup empowers users to quickly and easily traverse these remarks, thereby improving understanding of important public issues.</p>
+    <a class="btn btn-default btn-lg" href="#" role="button">Sign In</a>
+    <a class="btn btn-default btn-lg" href="#" role="button">Sign Up</a>
   </div>
-<% end %> -->
+<% end %>
 
 
 <% @speeches.each do |speech| %>

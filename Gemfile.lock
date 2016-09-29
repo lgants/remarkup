@@ -39,9 +39,14 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.2)
+    autoprefixer-rails (6.4.1.1)
+      execjs
     bcrypt (3.1.11)
     bootstrap-datepicker-rails (1.6.4.1)
       railties (>= 3.0)
+    bootstrap-sass (3.3.7)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     builder (3.2.2)
     byebug (9.0.5)
     coderay (1.1.1)
@@ -183,6 +188,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.11)
   bootstrap-datepicker-rails
+  bootstrap-sass
   byebug
   coffee-rails (~> 4.2)
   faker (~> 1.6.6)
@@ -197,7 +203,7 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
   rename
-  sass-rails (~> 5.0)
+  sass-rails
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

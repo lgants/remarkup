@@ -1,0 +1,23 @@
+alert("HI")
+
+$("#entire-speech-div").html("<%= j render partial: 'speeches/speech_full', locals: {speech: @speech}%>")
+
+var test = <%= JSON.parse(@snippets) %>
+
+$("#entire-speech-div").ready(function() {
+  function addSnippets(color, snippets){
+    var content = $("#content-div > p").html();
+    var newHTML = "";
+    debugger
+    prevIndex = 0;
+    snippets.forEach(function(item){
+      newHTML += content.substring(prevIndex, item[0]);
+      newHTML += '<span style="background-color:' + color + '">' + content.substring(item[0], item[1]) + '</span>';
+      // newHTML += '<span style="background-color:yellow">' + content.substring(item[0], item[1]) + '</span>';
+      prevIndex = item[1];
+    });
+    newHTML += content.substring(prevIndex, content.length);
+    $("#content-div > p").html(newHTML);
+  }
+  addSnippets("red", test)
+});
