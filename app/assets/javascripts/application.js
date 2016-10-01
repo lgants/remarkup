@@ -27,21 +27,42 @@ ready = (function() {
   $("#user-search-input").autocomplete({
     source: '/users/autocomplete.json',
     minLength: 3,
-    // select: function (event, ui) {
-    //   debugger
-    //       // Set autocomplete element to display the label
-    //       this.value = ui.item.label;
-    //       // Store value in hidden field
-    //       $('#hidden_field').val(ui.item.value);
-    //       // Prevent default behaviour
-    //       return false;
-    //    }
+    // select: function(event, ui) {
+    //   $('#select_origin').val(ui.item.user.first_name);
+    //   $('#link_origin_id').val(ui.item.user.id);
+    //   return false;
     // }
   });
 });
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
+
+
+// this is the old autocomplete
+// <script type="text/javascript">
+//   $(function() {
+//     $('#select_origin').autocomplete({
+//       minLength: 3,
+//       source: '<%= users_path(:json) %>',
+//       focus: function(event, ui) {
+//         $('#select_origin').val(ui.item.user.first_name);
+//         return false;
+//       },
+//       select: function(event, ui) {
+//         $('#select_origin').val(ui.item.user.first_name);
+//         $('#link_origin_id').val(ui.item.user.id);
+//           return false;
+//       }
+//       })
+//       .data( "autocomplete" )._renderItem = function( ul, item ) {
+//         return $( "<li></li>" )
+//           .data( "item.autocomplete", item )
+//             .append( "<a>" + item.user.first_name + item.user.last_name + "</a>" )
+//               .appendTo( ul );
+//       };
+//     });
+// </script>
 
 
 //START HIGHLIGHTS SECTION
