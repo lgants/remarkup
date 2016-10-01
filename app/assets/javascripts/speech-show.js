@@ -1,25 +1,3 @@
-// $(function(){
-//     $('#login').popover({
-//
-//         placement: 'bottom',
-//         // title: 'Popover Form',
-//         html:true,
-//         content:  $('#myForm').html()
-//     }).on('click', function(){
-//       // had to put it within the on click action so it grabs the correct info on submit
-//       $('.btn-primary').click(function(){
-//        $('#result').after("form submitted by " + $('#email').val())
-//         $.post('/echo/html/',  {
-//             email: $('#email').val(),
-//             name: $('#name').val(),
-//             gender: $('#gender').val()
-//         }, function(r){
-//           $('#pops').popover('hide')
-//           $('#result').html('resonse from server could be here' )
-//         })
-//       })
-//   })
-// })
 
 
 
@@ -39,17 +17,41 @@
 
 //needed to make dropdown work again in nav
 $(document).ready(function () {
-    debugger;
-    $('.dropdown-toggle').dropdown();
+  $('.dropdown-toggle').dropdown();
 
 
-//datepicker
-
+  //datepicker
   $('.datepicker').datepicker({
     format: 'mm/dd/yyyy',
     autoclose: true,
   });
 
+
+
+  //popover
+  //http://jsfiddle.net/apougher/rjRwV/
+  $(function(){
+      $('.color-palette').popover({
+
+          placement: 'bottom',
+          // title: 'Popover Form',
+          html:true,
+          content:  $('#myForm').html()
+      }).on('click', function(){
+        // had to put it within the on click action so it grabs the correct info on submit
+        $('.btn-primary').click(function(){
+         $('#result').after("form submitted by " + $('#email').val())
+          $.post('/echo/html/',  {
+              email: $('#email').val(),
+              name: $('#name').val(),
+              gender: $('#gender').val()
+          }, function(r){
+            $('#pops').popover('hide')
+            $('#result').html('resonse from server could be here' )
+          })
+        })
+    })
+  })
 
 
 

@@ -136,17 +136,73 @@
             <div class="panel-body">
               <ul class="nav navbar-nav">
                 <li>
-                  <div>
+                  <!-- <%= form_tag("/users", method: "get") do %>
+                    <%= label_tag(:q, "Search for:") %>
+                    <%= text_field_tag(:q) %>
+                    <%= submit_tag("Search") %>
+                  <% end %> -->
+                  <!-- <%= form_for :user, :url => users_path(@user) do |f| %>
+                      <input id="select_origin"/>
+                      <input id="link_origin_id" name="link[origin_id]" type="hidden"/>
+
+                    <%= f.submit 'Create' %>
+                  <% end %> -->
+
+                  <%= form_tag users_path, method: :get do %>
+                  <div class="input-group">
+
+                    <%= text_field_tag :query, params[:query], id: "user-search-input", class: 'form-control', placeholder: 'User name.....' %>
+                    <span class="input-group-btn">
+                      <!-- <button class="btn btn-default" type="button">Go!</button> -->
+                      <%= button_tag(type: 'submit', id: 'this-is-a-button', class: 'btn btn-default') do %>
+                        <i class='fa fa-search fa-fw'></i>
+                      <% end %>
+                    </span>
+                  <% end %>
+                </div>
+
+
+                  <!-- <input id="select_user" type="text"><input>
+                  <%= form_for :user do |f| %>
+                  <% f.text_field :user_name %>
+                  <% end %> -->
+
+
+          <script type="text/javascript">
+            $(function() {
+              $('#select_origin').autocomplete({
+                minLength: 3,
+                source: '<%= users_path(:json) %>',
+                focus: function(event, ui) {
+                  $('#select_origin').val(ui.item.user.first_name);
+                  return false;
+                },
+                select: function(event, ui) {
+                  $('#select_origin').val(ui.item.user.first_name);
+                  $('#link_origin_id').val(ui.item.user.id);
+                    return false;
+                }
+                })
+                .data( "autocomplete" )._renderItem = function( ul, item ) {
+                  return $( "<li></li>" )
+                    .data( "item.autocomplete", item )
+                      .append( "<a>" + item.user.first_name + "</a>" )
+                        .appendTo( ul );
+                };
+              });
+          </script>
+
+
+
+                  <%= form_for :user do |f| %>
+  <!-- <%= collection_select(:highlights, :user_id, User.all, :id, :first_name) %> -->
+                  <% end %>
+
+                  <div class="sidebar-user-quick-access">
                     Quick Access
-                    <%= render 'layouts/sidebar_search' %>
                     <%= render 'layouts/sidebar_user' %>
                   </div>
-                  <div>
-                    Groups
-                    <%= render 'layouts/sidebar_search' %>
-                    <%= render 'layouts/sidebar_user' %>
-                  </div>
-                  <div>
+                  <div class="sidebar-user-users">
                     Users
                     <%= render 'layouts/sidebar_search' %>
                     <%= render 'layouts/sidebar_user' %>

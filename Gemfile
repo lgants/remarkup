@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+
+#Use jquery UI Rails gem for search box with autocomplete text
+gem 'jquery-ui-rails'
 #Use gon to access Ruby variables in JS variables client-side
 gem 'gon', '~> 6.0', '>= 6.0.1'
 gem 'bootstrap-sass'

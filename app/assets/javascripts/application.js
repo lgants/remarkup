@@ -12,11 +12,36 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui/autocomplete
 //= require bootstrap-datepicker
 //= require bootstrap
 //= require bootstrap-sprockets
 // require turbolinks
 //= require_tree .
+
+
+
+var ready;
+ready = (function() {
+  $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
+  $("#user-search-input").autocomplete({
+    source: '/users/autocomplete.json',
+    minLength: 3,
+    // select: function (event, ui) {
+    //   debugger
+    //       // Set autocomplete element to display the label
+    //       this.value = ui.item.label;
+    //       // Store value in hidden field
+    //       $('#hidden_field').val(ui.item.value);
+    //       // Prevent default behaviour
+    //       return false;
+    //    }
+    // }
+  });
+});
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
 
 
 //START HIGHLIGHTS SECTION

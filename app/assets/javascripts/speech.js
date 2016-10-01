@@ -1,9 +1,53 @@
+var app = window.app = {};
+
+app.Users = function() {
+  this._input = $('#users-search-txt');
+  this._initAutocomplete();
+};
+
+app.Users.prototype = {
+
+};
+
+_initAutocomplete: function() {
+  this._input
+    .autocomplete({
+      source: '/users',
+      appendTo: '#users-search-results',
+      select: $.proxy(this._select, this)
+    })
+    .autocomplete('instance')._renderItem = $.proxy(this._render, this);
+}
+
+_select: function(e, ui) {
+  this._input.val(ui.item.title + ' - ' + ui.item.author);
+  return false;
+}
+
+_render: function(ul, item) {
+  var markup = [
+    '<span class="img">',
+      '<img src="' + item.image_url + '" />',
+    '</span>',
+    '<span class="title">' + item.title + '</span>',
+    '<span class="author">' + item.author + '</span>',
+    '<span class="price">' + item.price + '</span>'
+  ];
+  return $('<li>')
+    .append(markup.join(''))
+    .appendTo(ul);
+}
+
+
+
+
+
 $(document).ready(function() {
 
   function addSnippets(color, snippets){
     var content = $("#content-div > p").html();
     var newHTML = "";
-    debugger
+
     prevIndex = 0;
     snippets.forEach(function(item){
       newHTML += content.substring(prevIndex, item[0]);

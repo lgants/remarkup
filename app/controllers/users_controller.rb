@@ -1,15 +1,40 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-  end
+
+
+    def autocomplete
+      @users = User.order(:first_name).where("first_name LIKE ? OR last_name LIKE ?", "%#{params[:term]}%", "%#{params[:term]}%")
+      # @users = User.order(:first_name).where("first_name LIKE ?", "%#{params[:term]}%")
+      respond_to do |format|
+        format.html
+        format.json {
+          render json: @users.map{|x| x.first_name + " " + x.last_name}.to_json
+          # render json: @users.map(&:first_name).to_json
+
+        }
+      end
+    end
+
+
+
+  # def index
+  # # I will explain this part in a moment.
+  #   if params[:term]
+  #     @users = User.find(:all,:conditions => ['given_name LIKE ?', "#{params[:term]}%"])
+  #   else
+  #     @users = User.all
+  #   end
+  #   respond_to do |format|
+  #     format.html
+  #     format.json { render :json => @users.to_json }
+  #   end
+  # end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    @users = User.all
   end
 
   # GET /users/new

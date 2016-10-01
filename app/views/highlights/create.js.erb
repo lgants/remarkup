@@ -8,7 +8,7 @@ $("#entire-speech-div").ready(function() {
   function addSnippets(color, snippets){
     var content = $("#content-div > p").html();
     var newHTML = "";
-    debugger
+    
     prevIndex = 0;
     snippets.forEach(function(item){
       newHTML += content.substring(prevIndex, item[0]);
