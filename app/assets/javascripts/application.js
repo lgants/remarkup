@@ -23,10 +23,18 @@
 
 var ready;
 ready = (function() {
+  debugger
   $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
   $("#user-search-input").autocomplete({
-    source: '/users/autocomplete.json',
-    minLength: 3,
+    // source: '/users/autocomplete.json',
+    source: function(request, response) {
+    $.getJSON(
+      "/users/autocomplete.json",
+      { term:request.term, extraParams: gon.speech_id },
+      response
+      );
+    },
+    minLength: 2,
     // select: function(event, ui) {
     //   $('#select_origin').val(ui.item.user.first_name);
     //   $('#link_origin_id').val(ui.item.user.id);

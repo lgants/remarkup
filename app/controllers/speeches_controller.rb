@@ -12,6 +12,7 @@ class SpeechesController < ApplicationController
   # GET /speeches/1
   # GET /speeches/1.json
   def show
+    gon.speech_id = @speech.id
     #markup_li is used to show the markup panel
     @markup_li = true
     # code below searches if the user has an existing highlight

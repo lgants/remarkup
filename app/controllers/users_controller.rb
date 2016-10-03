@@ -6,10 +6,12 @@ class UsersController < ApplicationController
     def autocomplete
       @users = User.order(:first_name).where("first_name LIKE ? OR last_name LIKE ?", "%#{params[:term]}%", "%#{params[:term]}%")
       # @users = User.order(:first_name).where("first_name LIKE ?", "%#{params[:term]}%")
+      @speech = Speech.find(params[:extraParams].to_f)
       respond_to do |format|
         format.html
         format.json {
-          render json: @users.map{|x| x.first_name + " " + x.last_name}.to_json
+          render json: @users.map{|user| user.first_name + " " + user.last_name + " " + Highlight.find_by(user_id: user.id, speech_id: @speech.id).snippets}.to_json
+          # render json: @users.map{|user| user.first_name + " " + user.last_name}.to_json
           # render json: @users.map(&:first_name).to_json
 
         }

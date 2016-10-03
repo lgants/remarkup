@@ -1,4 +1,3 @@
-alert("HI")
 
 $("#entire-speech-div").html("<%= j render partial: 'speeches/speech_full', locals: {speech: @speech}%>")
 
@@ -8,7 +7,7 @@ $("#entire-speech-div").ready(function() {
   function addSnippets(color, snippets){
     var content = $("#content-div > p").html();
     var newHTML = "";
-    
+
     prevIndex = 0;
     snippets.forEach(function(item){
       newHTML += content.substring(prevIndex, item[0]);
