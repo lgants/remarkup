@@ -3,3 +3,52 @@
 <div id="entire-speech-div">
   <%= render partial: 'speech_full', locals: {speech: @speech} %>
 </div>
+
+
+<script>
+
+var ready;
+ready = (function() {
+  $( "#plus-button" ).on("click", function(event){
+    event.preventDefault();
+    $( "#user-search-input" ).val('')
+  })
+  // $('#plus-button').prop('disabled', true);
+  $( "#user-search-input" ).autocomplete({
+    minLength: 1,
+    source: function(request, response) {
+      $.getJSON(
+        "/users/autocomplete.json",
+        { term:request.term, speech_id: gon.speech_id },
+        function(data) {
+          response(data);
+        }
+      );
+    },
+    focus: function( event, object) {
+      $( "#user-search-input" ).val( object.item.user_full_name );
+      return false;
+    },
+    select: function( event, object ) {
+      sidebarUsers.push({
+        userFullName: object.item.user_full_name,
+        userHighlights: object.item.highlights,
+        highlightColor: "red",
+        speechId: gon.speech_id,
+        show: false,
+        numTracker: tracker++
+      });
+      return false;
+    }
+  })
+  .autocomplete( "instance" )._renderItem = function( ul, item ) {
+    return $( "<li>" )
+      .append( "<div>" + item.user_full_name + "</div>" )
+      .appendTo( ul );
+  };
+} );
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
+</script>
