@@ -21,27 +21,110 @@
 
 
 
+// $( function() {
+    // var projects = [
+    //   {
+    //     value: "jquery",
+    //     label: "jQuery",
+    //     desc: "the write less, do more, JavaScript library",
+    //     icon: "jquery_32x32.png"
+    //   },
+    //   {
+    //     value: "jquery-ui",
+    //     label: "jQuery UI",
+    //     desc: "the official user interface library for jQuery",
+    //     icon: "jqueryui_32x32.png"
+    //   },
+    //   {
+    //     value: "sizzlejs",
+    //     label: "Sizzle JS",
+    //     desc: "a pure-JavaScript CSS selector engine",
+    //     icon: "sizzlejs_32x32.png"
+    //   }
+    // ];
+
+
+        // <div id="project-label">Select a project (type "j" for a start):</div>
+        // <img id="project-icon" src="images/transparent_1x1.png" class="ui-state-default" alt="">
+        // <input id="project">
+        // <input type="hidden" id="user-search-hidden">
+        // <p id="project-description"></p>
+
+
+
 var ready;
+// var test = [{
+//   name: "jquery",
+//   highlights: "jQuery",
+// }]
 ready = (function() {
-  debugger
-  $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
-  $("#user-search-input").autocomplete({
-    // source: '/users/autocomplete.json',
-    source: function(request, response) {
+  // var x = [];
+  // $.getJSON(
+  //   "/users/autocomplete.json",
+  //   { term:request.term, speech_id: gon.speech_id },
+  //   function(data){
+  //     console.log(data)
+  //     x = data;
+  //   }
+  // );
+
+$( "#user-search-input" ).autocomplete({
+  minLength: 1,
+  source: function(request, response) {
     $.getJSON(
       "/users/autocomplete.json",
-      { term:request.term, extraParams: gon.speech_id },
-      response
-      );
-    },
-    minLength: 2,
-    // select: function(event, ui) {
-    //   $('#select_origin').val(ui.item.user.first_name);
-    //   $('#link_origin_id').val(ui.item.user.id);
-    //   return false;
-    // }
-  });
-});
+      { term:request.term, speech_id: gon.speech_id },
+      function(data) {
+        response(data);
+      }
+    );
+  },
+  focus: function( event, object) {
+    $( "#user-search-input" ).val( object.item.user_full_name );
+    return false;
+  },
+  select: function( event, object ) {
+    $( "#user-search-input" ).val( object.item.user_full_name );
+    $( "#user-search-hidden" ).val( object.item.highlights );
+    // $( "#project-description" ).html( ui.item.desc );
+    // $( "#project-icon" ).attr( "src", "images/" + ui.item.icon );
+    return false;
+  }
+})
+.autocomplete( "instance" )._renderItem = function( ul, item ) {
+  return $( "<li>" )
+    .append( "<div>" + item.user_full_name + "</div>" )
+    .appendTo( ul );
+};
+} );
+
+
+
+
+// var ready;
+// ready = (function() {
+//   debugger
+//   $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
+//   $("#user-search-input").autocomplete({
+//     // source: '/users/autocomplete.json',
+//     source: function(request, response) {
+//       $.getJSON(
+//         "/users/autocomplete.json",
+//         { term:request.term, speech_id: gon.speech_id },
+//         response
+//       );
+//     },
+//     minLength: 2,
+//     select: function(e, ui) {
+//
+//     }
+//     // select: function(event, ui) {
+//     //   $('#select_origin').val(ui.item.user.first_name);
+//     //   $('#link_origin_id').val(ui.item.user.id);
+//     //   return false;
+//     // }
+//   });
+// });
 
 $(document).ready(ready);
 $(document).on('page:load', ready);

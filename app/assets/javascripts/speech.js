@@ -1,4 +1,14 @@
 $(document).ready(function() {
+  //this will be used for tracking the selected users
+  var sidebarSelectionTracker = {
+
+  }
+
+  var grabUserTest = {
+
+  }
+
+
 
   function addSnippets(color, snippets){
     var content = $("#content-div > p").html();
@@ -27,6 +37,9 @@ $(document).ready(function() {
   var selectedHighlights = [];
 
   $('#add-highlights-button').on('click', function(e){
+    //changes the background color for demonstration purposes
+    $('#user-paint-brush').css("background-color","rgb(255, 133, 168)");
+    debugger
     console.log("clicked add-highlights-button");
     // e.stopPropogation();
     var contentDiv = document.getElementById("content-div");

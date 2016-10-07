@@ -18,6 +18,12 @@
  */
 
 
+//sets the highlight selection color - for demo purposes
+ p::-moz-selection { background-color: rgb(255, 133, 168)}
+ p::selection { background-color: rgb(255, 133, 168) }
+
+
+
  .users-search input {
   width: 100%;
   font-size: 1em;
