@@ -2,29 +2,10 @@ $(document).ready(function() {
   //this will be used for tracking the selected users
 
 
-  function addSnippets(color, snippets){
-    var content = $("#content-div > p").html();
-    debugger
-    var newHTML = "";
-
-    prevIndex = 0;
-    snippets.forEach(function(item){
-      newHTML += content.substring(prevIndex, item[0]);
-      newHTML += '<span style="background-color:' + color + '">' + content.substring(item[0], item[1]) + '</span>';
-      // newHTML += '<span style="background-color:yellow">' + content.substring(item[0], item[1]) + '</span>';
-      prevIndex = item[1];
-    });
-    newHTML += content.substring(prevIndex, content.length);
-    $("#content-div > p").html(newHTML);
-  }
-
-  if (gon.snippets){
-    addSnippets("rgb(255, 133, 168)", JSON.parse(gon.snippets))
-  }
-
-
-
-
+if (gon.snippets){
+  var input = $("#content-div > p").html();
+  $("#content-div > p").html(colorizedContent("rgb(255, 133, 168)", JSON.parse(gon.snippets), input))
+}
 
 
   var selectedHighlights = [];
@@ -32,7 +13,7 @@ $(document).ready(function() {
   $('#add-highlights-button').on('click', function(e){
     //changes the background color for demonstration purposes
     $('#user-paint-brush').css("background-color","rgb(255, 133, 168)");
-    debugger
+
     console.log("clicked add-highlights-button");
     // e.stopPropogation();
     var contentDiv = document.getElementById("content-div");

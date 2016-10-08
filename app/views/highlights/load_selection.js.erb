@@ -1,7 +1,5 @@
 
 var snippets = <%= JSON.parse(@highlights.snippets) %>
-
-
 var speechContent = <%= @speech.content.to_json.html_safe %>
 
 
@@ -9,12 +7,8 @@ $("#selected-users-toggle-box").append("<%= j render partial: 'layouts/sidebar_u
 
   debugger
     $("#content-div > p").html(
-      colorizedContent("red", snippets, speechContent)
+      colorizedContent("rgb(255, 133, 168)", snippets, speechContent)
     )
-
-
-
-
 });
 
 

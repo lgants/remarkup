@@ -52,11 +52,10 @@ class HighlightsController < ApplicationController
 
     @snippets = highlight.snippets
     @speech = highlight.speech
+
     respond_to do |format|
       if highlight.save
         format.js
-        # format.html { redirect_to "speech/#{speech_id}", notice: 'Highlight was successfully created.' }
-        # format.json { render json: { snippets: highlight.snippets }}
       else
         format.html { render :new }
         format.json { render json: highlight.errors, status: :unprocessable_entity }

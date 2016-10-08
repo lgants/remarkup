@@ -38,7 +38,7 @@ window.colorizedContent = function(color, snippets, uncolorizedSpeechContent){
   });
 
   newHTML += uncolorizedSpeechContent.substring(prevIndex, uncolorizedSpeechContent.length);
-  debugger
+  
   return newHTML;
 }
 
