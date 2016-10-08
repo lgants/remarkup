@@ -3,8 +3,13 @@ $(document).ready(function() {
 
 
 if (gon.snippets){
-  var input = $("#content-div > p").html();
-  $("#content-div > p").html(colorizedContent("rgb(255, 133, 168)", JSON.parse(gon.snippets), input))
+  $.ajax({
+    type: 'GET',
+    url: '/load_selection_route',
+    data: {data: {user_id: gon.user_id, speech_id: gon.speech_id}}
+  })
+  // var input = $("#content-div > p").html();
+  // $("#content-div > p").html(colorizedContent("rgb(255, 133, 168)", JSON.parse(gon.snippets), input))
 }
 
 

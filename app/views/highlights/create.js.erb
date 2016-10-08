@@ -3,8 +3,13 @@
 var snippets = <%= JSON.parse(@snippets) %>
 var speechContent = <%= @speech.content.to_json.html_safe %>
 
-$("#entire-speech-div").html("<%= j render partial: 'speeches/speech_full', locals: {speech: @speech}%>")
+debugger
 
+$("#entire-speech-div").html("<%= j render partial: 'speeches/speech_full', locals: {speech: @speech}%>").ready(function(){
+  $("#quick-access-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user:  @user}%>")
+})
+
+debugger
 
 $("#content-div > p").html(
   colorizedContent("rgb(255, 133, 168)", snippets, speechContent)

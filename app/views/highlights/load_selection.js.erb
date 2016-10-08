@@ -1,15 +1,26 @@
 
 var snippets = <%= JSON.parse(@highlights.snippets) %>
 var speechContent = <%= @speech.content.to_json.html_safe %>
+var current_user_id = <%= @current_user.id.to_json.html_safe %>
+var selected_user_id = <%= @user.id.to_json.html_safe %>
+
+debugger
+
+if (current_user_id == selected_user_id){
+  $("#current-user-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user:  @user}%>").ready(function () {
+      $("#content-div > p").html(
+        colorizedContent("rgb(255, 133, 168)", snippets, speechContent)
+      )
+  });
+} else {
+  $("#selected-users-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user:  @user}%>").ready(function () {
+      $("#content-div > p").html(
+        colorizedContent("rgb(255, 133, 168)", snippets, speechContent)
+      )
+  });
+}
 
 
-$("#selected-users-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user:  @user}%>").ready(function () {
-
-  debugger
-    $("#content-div > p").html(
-      colorizedContent("rgb(255, 133, 168)", snippets, speechContent)
-    )
-});
 
 
 // function addSnippets(color, snippets){

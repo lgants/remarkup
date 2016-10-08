@@ -6,14 +6,15 @@ class HighlightsController < ApplicationController
 
 
   def load_selection
-    # this is all relative to the selected user and speech
+    # this is all relative to the selected user (current or otherwise) and speech
+
     user_id = JSON.parse(params[:data][:user_id])
     speech_id = JSON.parse(params[:data][:speech_id])
 
-    @test = "test"
     @user = User.find(user_id)
     @highlights = Highlight.find_by(user_id: user_id, speech_id: speech_id)
     @speech = Speech.find(speech_id)
+    @current_user = current_user
 
     respond_to do |format|
       format.js {}
@@ -52,6 +53,7 @@ class HighlightsController < ApplicationController
 
     @snippets = highlight.snippets
     @speech = highlight.speech
+    @user = User.find(current_user.id)
 
     respond_to do |format|
       if highlight.save
