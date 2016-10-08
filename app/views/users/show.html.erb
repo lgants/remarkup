@@ -26,8 +26,9 @@
       <div class="col-lg-6 col-md-6 col-sm-6">
         <h5>Marked <span class="badge"><%= @user.highlights.count %></span></h5>
         <div class="panel panel-default">
-          <div class="panel-body pre-scrollable" style="height: 250px;">
-            <% @user.highlights.each do |speech| %>
+          <div class="panel-body pre-scrollable" style="height: 250px; padding:2.5px">
+            <% @user.highlights.each do |highlight| %>
+              <% speech = Speech.find(highlight.speech_id) %>
               <%= render partial: 'speech_thumbnail', locals: { speech: speech } %>
             <% end %>
           </div>
@@ -36,7 +37,7 @@
       <div class="col-lg-6 col-md-6 col-sm-6">
         <h5>Contributed <span class="badge"><%= @user.speeches.count %></span></h5>
         <div class="panel panel-default">
-          <div class="panel-body pre-scrollable" style="height: 250px; padding:5px">
+          <div class="panel-body pre-scrollable" style="height: 250px; padding:2.5px">
             <% @user.speeches.each do |speech| %>
               <%= render partial: 'speech_thumbnail', locals: { speech: speech } %>
             <% end %>
@@ -68,77 +69,6 @@
     </div>
   </div>
 </div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @user.phone %>
-</p>
-
-<p>
-  <strong>Organization:</strong>
-  <%= @user.organization %>
-</p>
-
-<p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
-
-<p>
-  <strong>Biography:</strong>
-  <%= @user.biography %>
-</p>
-
-<p>
-  <strong>Default color:</strong>
-  <%= @user.default_color %>
-</p>
-
-<p>
-  <strong>Public figure:</strong>
-  <%= @user.public_figure %>
-</p>
-
-<p>
-  <strong>Entity:</strong>
-  <%= @user.entity %>
-</p>
-
-<p>
-  <strong>Moderator:</strong>
-  <%= @user.moderator %>
-</p>
-
-<p>
-  <strong>Admin:</strong>
-  <%= @user.admin %>
-</p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
