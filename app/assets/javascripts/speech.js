@@ -4,6 +4,7 @@ $(document).ready(function() {
 
   function addSnippets(color, snippets){
     var content = $("#content-div > p").html();
+    debugger
     var newHTML = "";
 
     prevIndex = 0;

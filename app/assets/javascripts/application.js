@@ -23,9 +23,25 @@
 
 
 
+//makes this a global function
+window.colorizedContent = function(color, snippets, uncolorizedSpeechContent){
 
-var tracker = 0;
-var sidebarUsers = [];
+  var newHTML = "";
+
+  prevIndex = 0;
+  snippets.forEach(function(item){
+
+    newHTML += uncolorizedSpeechContent.substring(prevIndex, item[0]);
+    newHTML += '<span style="background-color:' + color + '">' + uncolorizedSpeechContent.substring(item[0], item[1]) + '</span>';
+    // newHTML += '<span style="background-color:yellow">' + content.substring(item[0], item[1]) + '</span>';
+    prevIndex = item[1];
+  });
+
+  newHTML += uncolorizedSpeechContent.substring(prevIndex, uncolorizedSpeechContent.length);
+  debugger
+  return newHTML;
+}
+
 
 
 

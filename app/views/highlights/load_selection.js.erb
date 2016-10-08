@@ -7,10 +7,10 @@ var speechContent = <%= @speech.content.to_json.html_safe %>
 
 $("#selected-users-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user:  @user}%>").ready(function () {
 
-
-
-
-  $("#content-div > p").text(speechContent)
+  debugger
+    $("#content-div > p").html(
+      colorizedContent("red", snippets, speechContent)
+    )
 
 
 
