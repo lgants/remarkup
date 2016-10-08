@@ -1,13 +1,5 @@
 $(document).ready(function() {
   //this will be used for tracking the selected users
-  var sidebarSelectionTracker = {
-
-  }
-
-  var grabUserTest = {
-
-  }
-
 
 
   function addSnippets(color, snippets){

@@ -12,6 +12,7 @@ ready = (function() {
   $( "#plus-button" ).on("click", function(event){
     event.preventDefault();
     $( "#user-search-input" ).val('')
+
   })
   // $('#plus-button').prop('disabled', true);
   $( "#user-search-input" ).autocomplete({
@@ -30,14 +31,21 @@ ready = (function() {
       return false;
     },
     select: function( event, object ) {
-      sidebarUsers.push({
-        userFullName: object.item.user_full_name,
-        userHighlights: object.item.highlights,
-        highlightColor: "red",
-        speechId: gon.speech_id,
-        show: false,
-        numTracker: tracker++
-      });
+      //update to make an ajax request
+      // sidebarUsers.push({
+      //   userFullName: object.item.user_full_name,
+      //   userHighlights: object.item.highlights,
+      //   highlightColor: "red",
+      //   speechId: gon.speech_id,
+      //   show: false,
+      //   numTracker: tracker++
+      // });
+        $.ajax({
+          type: 'GET',
+          url: '/load_selection_route',
+          data: {data: {user_id: object.item.user_id, speech_id: object.item.speech_id}}
+        })
+        event.preventDefault();
       return false;
     }
   })

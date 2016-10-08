@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-
-
     def autocomplete
       @users = User.order(:first_name).where("first_name LIKE ? OR last_name LIKE ?", "%#{params[:term]}%", "%#{params[:term]}%")
       # @users = User.order(:first_name).where("first_name LIKE ?", "%#{params[:term]}%")
@@ -11,7 +9,8 @@ class UsersController < ApplicationController
         format.html
         format.json {
           render json: @users.map{ |user|
-            Hash[ [ [:user_full_name, user.first_name + " " + user.last_name], [:highlights, Highlight.find_by(user_id: user.id, speech_id: @speech.id).snippets] ] ]
+            Hash[ [ [:user_full_name, user.first_name + " " + user.last_name], [:speech_id, @speech.id], [:user_id, user.id] ] ]
+            # Hash[ [ [:user_full_name, user.first_name + " " + user.last_name], [:highlights, Highlight.find_by(user_id: user.id, speech_id: @speech.id).snippets], [:user_id, user.id] ] ]
           }.to_json
           # render json: @users.map{|user| user.first_name + " " + user.last_name + " " + Highlight.find_by(user_id: user.id, speech_id: @speech.id).snippets}.to_json
           }

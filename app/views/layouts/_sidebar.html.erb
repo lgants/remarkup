@@ -137,7 +137,8 @@
 
                   <div class="sidebar-user-quick-access">
                     Quick Access
-                    <%= render 'layouts/sidebar_user' %>
+                    <div id="quick-access-toggle-box">
+                    </div>
                   </div><!-- sidebar-user-quick-access-section -->
 
 
@@ -148,17 +149,16 @@
                         <%= form_tag users_path, method: :get do %>
                           <div class="input-group input-group-sm" style="font-size:14px">
                             <%= text_field_tag :query, params[:query], id: "user-search-input", class: 'form-control', placeholder: 'search users...' %>
-                            <span class="input-group-btn">
+                            <!-- <span class="input-group-btn">
                               <%= button_tag(type: 'submit', id: 'this-is-a-button', class: 'btn btn-default') do %>
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                               <% end %>
-                            </span>
+                            </span> -->
                           </div>
                         <% end %>
                       </div>
                     </div>
-                    <div class="user-select-toggles">
-                      <%= render 'layouts/sidebar_user' %>
+                    <div id="selected-users-toggle-box">
                     </div>
                   </div><!-- sidebar-user-select-section -->
 

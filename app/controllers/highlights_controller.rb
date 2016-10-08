@@ -2,6 +2,25 @@ class HighlightsController < ApplicationController
   before_action :set_highlight, only: [:edit, :update]
   # before action check_highlight used to check whether highlight alread exists
 
+
+
+
+  def load_selection
+    # this is all relative to the selected user and speech
+    user_id = JSON.parse(params[:data][:user_id])
+    speech_id = JSON.parse(params[:data][:speech_id])
+
+    @test = "test"
+    @user = User.find(user_id)
+    @highlights = Highlight.find_by(user_id: user_id, speech_id: speech_id)
+    @speech = Speech.find(speech_id)
+
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
+
   # GET /highlights
   # GET /highlights.json
   def index
