@@ -1,22 +1,41 @@
 
+
 var snippets = <%= JSON.parse(@highlights.snippets) %>
 var speechContent = <%= @speech.content.to_json.html_safe %>
 var current_user_id = <%= @current_user.id.to_json.html_safe %>
 var selected_user_id = <%= @user.id.to_json.html_safe %>
 
-debugger
+var color = colorSelector(colorOptionsTracker, colorOptions)
+
+
+
+
+
+
 
 if (current_user_id == selected_user_id){
   $("#current-user-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user:  @user}%>").ready(function () {
+
+      $("#content-div").attr('id', "user_" + selected_user_id);
+
       $("#content-div > p").html(
-        colorizedContent("rgb(255, 133, 168)", snippets, speechContent)
+        colorizedContent(color, snippets, speechContent)
       )
+
+      var jquery_string = "#user_" + selected_user_id + ".sidebar_user_box_instance"
+      $(jquery_string).find(".paint-brush").css('background-color', color);
+
+
+      debugger
+
+
   });
 } else {
   $("#selected-users-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user:  @user}%>").ready(function () {
       $("#content-div > p").html(
         colorizedContent("rgb(255, 133, 168)", snippets, speechContent)
       )
+      $("#content-div").attr('id', "user_" + selected_user_id);
   });
 }
 

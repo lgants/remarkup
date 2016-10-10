@@ -17,8 +17,6 @@ if (gon.snippets){
 
   $('#add-highlights-button').on('click', function(e){
     //changes the background color for demonstration purposes
-    $('#user-paint-brush').css("background-color","rgb(255, 133, 168)");
-
     console.log("clicked add-highlights-button");
     // e.stopPropogation();
     var contentDiv = document.getElementById("content-div");

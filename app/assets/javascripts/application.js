@@ -37,7 +37,25 @@ window.colorizedContent = function(color, snippets, uncolorizedSpeechContent){
 }
 
 
+window.colorSelector = function(tracker, options){
+  if (tracker >= 6){
+    tracker = 0;
+  } else {
+    tracker += 1
+  }
+  return options[tracker]
+}
 
+
+var colorOptionsTracker = 0;
+var colorOptions = [
+  "rgb(255, 243, 133)",
+  "rgb(255, 214, 133)",
+  "rgb(255, 133, 168)",
+  "rgb(133, 255, 208)",
+  "rgb(133, 194, 255)",
+  "rgb(255, 133, 243)"
+]
 
 
 
