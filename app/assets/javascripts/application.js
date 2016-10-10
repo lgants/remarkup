@@ -38,11 +38,14 @@ window.colorizedContent = function(color, snippets, uncolorizedSpeechContent){
 
 
 window.colorSelector = function(tracker, options){
+  tracker+=1;
+
   if (tracker >= 6){
     tracker = 0;
-  } else {
-    tracker += 1
   }
+
+  colorOptionsTracker = tracker;
+
   return options[tracker]
 }
 
@@ -87,69 +90,6 @@ var colorOptions = [
 //     });
 // </script>
 
-
-//START HIGHLIGHTS SECTION
-//record highlights - not ajaxified yet
-// var selectedHighlights = [];
-//
-// $('#add-highlights-button').on('click', function(e){
-//   e.stopPropogation();
-//   var contentDiv = document.getElementById("content-div");
-// });
-//
-// $("#main-record-index").on('mouseup', function(){
-//   var result = getSelectionCharOffsetsWithin(contentDiv);
-//   selectedHighlights.push("[" + result.start + ": " + result.end + "]");
-//   alert(selectedHighlights);
-// })
-//
-//
-// function getSelectionCharOffsetsWithin(element) {
-//   var start = 0, end = 0;
-//   var sel, range, priorRange;
-//   if (typeof window.getSelection != "undefined") {
-//     range = window.getSelection().getRangeAt(0)
-//     priorRange = range.cloneRange();
-//     priorRange.selectNodeContents(element);
-//     priorRange.setEnd(range.startContainer, range.startOffset);
-//     start = priorRange.toString().length;
-//     end = start + range.toString().length;
-//   } else if (typeof document.selection != "undefined" &&
-//     (sel = document.selection).type != "Control") {
-//     range = sel.createRange();
-//     priorRange = document.body.createTextRange();
-//     priorRange.moveToElementText(element);
-//     priorRange.setEndPoint("EndToStart", range);
-//     start = priorRange.text.length;
-//     end = start + range.text.length;
-//   }
-//   return {
-//     start: start,
-//     end: end
-//   };
-// }
-
-
-
-
-// //save highlights - not ajaxified yet
-// $('save-highlights-button').on('click', function(){
-//
-//
-// }
-//
-// //clear highlights - not ajaxified yet
-// $('clear-highlights-button').on('click', function(){
-//
-// }
-
-//load highlights if exist - not ajaxified yet
-
-  //check if highlihts exists
-  //iterate through and insert a span with a change background color
-
-
-//END HIGHLIGHTS SECTION
 
 
 

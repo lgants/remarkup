@@ -5,6 +5,7 @@ var speechContent = <%= @speech.content.to_json.html_safe %>
 var current_user_id = <%= @current_user.id.to_json.html_safe %>
 var selected_user_id = <%= @user.id.to_json.html_safe %>
 
+debugger
 var color = colorSelector(colorOptionsTracker, colorOptions)
 
 
@@ -16,44 +17,34 @@ var color = colorSelector(colorOptionsTracker, colorOptions)
 if (current_user_id == selected_user_id){
   $("#current-user-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user:  @user}%>").ready(function () {
 
-      $("#content-div").attr('id', "user_" + selected_user_id);
+      $(".content-div").attr('id', "user_" + selected_user_id);
 
-      $("#content-div > p").html(
+
+      $(".content-div > p").html(
         colorizedContent(color, snippets, speechContent)
       )
 
-      var jquery_string = "#user_" + selected_user_id + ".sidebar_user_box_instance"
-      $(jquery_string).find(".paint-brush").css('background-color', color);
+      var jquery_string_paint = "#user_" + selected_user_id + ".sidebar_user_box_instance"
+      $(jquery_string_paint).find(".paint-brush").last().css('background-color', color);
 
+      // // sets the background of all to unchecked
+      // var jquery_string_check = "#user_" + selected_user_id + ".sidebar_user_box_instance"
+      // $(jquery_string_check).find(".check").each(function(index, object){
+      //   object.html("<i class='fa fa-square-o' aria-hidden='true'></i>");
+      // })
+      //
+      // // sets the background of the last to checked
+      // var jquery_string_check = "#user_" + selected_user_id + ".sidebar_user_box_instance"
+      // $(jquery_string_check).find(".check").last().html("<i class='fa fa-check-square-o' aria-hidden='true'></i>");
 
-      debugger
 
 
   });
 } else {
   $("#selected-users-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user:  @user}%>").ready(function () {
-      $("#content-div > p").html(
+      $(".content-div > p").html(
         colorizedContent("rgb(255, 133, 168)", snippets, speechContent)
       )
-      $("#content-div").attr('id', "user_" + selected_user_id);
+      $(".content-div").attr('id', "user_" + selected_user_id);
   });
 }
-
-
-
-
-// function addSnippets(color, snippets){
-//   var content = $("#content-div > p").html();
-//   var newHTML = "";
-//
-//   prevIndex = 0;
-//   snippets.forEach(function(item){
-//     newHTML += content.substring(prevIndex, item[0]);
-//     newHTML += '<span style="background-color:' + color + '">' + content.substring(item[0], item[1]) + '</span>';
-//     // newHTML += '<span style="background-color:yellow">' + content.substring(item[0], item[1]) + '</span>';
-//     prevIndex = item[1];
-//   });
-//   newHTML += content.substring(prevIndex, content.length);
-//   $("#content-div > p").html(newHTML);
-// }
-// addSnippets("rgb(255, 133, 168"), snippets)

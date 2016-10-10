@@ -8,8 +8,6 @@ if (gon.snippets){
     url: '/load_selection_route',
     data: {data: {user_id: gon.user_id, speech_id: gon.speech_id}}
   })
-  // var input = $("#content-div > p").html();
-  // $("#content-div > p").html(colorizedContent("rgb(255, 133, 168)", JSON.parse(gon.snippets), input))
 }
 
 
@@ -19,7 +17,8 @@ if (gon.snippets){
     //changes the background color for demonstration purposes
     console.log("clicked add-highlights-button");
     // e.stopPropogation();
-    var contentDiv = document.getElementById("content-div");
+    var contentDiv = document.getElementByClassName("content-div");
+        debugger
     record()
   });
 
