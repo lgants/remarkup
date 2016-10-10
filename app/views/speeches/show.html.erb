@@ -12,11 +12,6 @@
 
 var ready;
 ready = (function() {
-  $( "#plus-button" ).on("click", function(event){
-    event.preventDefault();
-    $( "#user-search-input" ).val('')
-
-  })
   // $('#plus-button').prop('disabled', true);
   $( "#user-search-input" ).autocomplete({
     minLength: 1,
