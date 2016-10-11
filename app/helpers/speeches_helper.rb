@@ -1,7 +1,8 @@
 module SpeechesHelper
-  
+
   def us_states
     [
+      ['select', 'Error'],
       ['Alabama', 'AL'],
       ['Alaska', 'AK'],
       ['Arizona', 'AZ'],
