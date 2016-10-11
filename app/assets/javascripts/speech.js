@@ -34,7 +34,6 @@ $(document).ready(function() {
       selectedHighlights.push([result.start, result.end]);
       debugger
       alert(selectedHighlights);
-
       // this is where i will add the patch action
     })
   }

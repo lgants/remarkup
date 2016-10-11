@@ -19,7 +19,19 @@
 // require turbolinks
 //= require_tree .
 
-//makes this a global function
+
+
+var colorOptionsTracker = 0;
+
+var colorOptions = [
+  {refVal: 0, colorCode: "rgb(255, 243, 133)"},
+  {refVal: 1, colorCode: "rgb(255, 214, 133)"},
+  {refVal: 2, colorCode: "rgb(255, 133, 168)"},
+  {refVal: 3, colorCode: "rgb(133, 255, 208)"},
+  {refVal: 4, colorCode: "rgb(133, 194, 255)"},
+  {refVal: 5, colorCode: "rgb(255, 133, 243)"}
+]
+
 window.colorizedContent = function(color, snippets, uncolorizedSpeechContent){
   var newHTML = "";
   prevIndex = 0;
@@ -32,24 +44,22 @@ window.colorizedContent = function(color, snippets, uncolorizedSpeechContent){
   return newHTML;
 }
 
-window.colorSelector = function(tracker, options){
-  tracker+=1;
 
+window.colorSelector = function(tracker, options){
+  //hack - since index corresponds to refVal
+  return options[tracker];
+  // options.filter(function(element){
+  //   if (element.refVal === tracker){
+  //     return element;
+  //   }
+  // });
+}
+
+//refactor to combine incrementColorTracker and colorSelector
+window.incrementColorTracker = function(colorTracker){
+  tracker+=1;
   if (tracker >= 6){
     tracker = 0;
   }
-
   colorOptionsTracker = tracker;
-
-  return options[tracker]
 }
-
-var colorOptionsTracker = 0;
-var colorOptions = [
-  "rgb(255, 243, 133)",
-  "rgb(255, 214, 133)",
-  "rgb(255, 133, 168)",
-  "rgb(133, 255, 208)",
-  "rgb(133, 194, 255)",
-  "rgb(255, 133, 243)"
-]
