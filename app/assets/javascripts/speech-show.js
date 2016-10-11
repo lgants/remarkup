@@ -1,7 +1,7 @@
 
 
 
-//enable popovers
+// enable popovers
 // $(function () {
 //   $('[data-toggle="popover"]').popover();
 // });
@@ -30,28 +30,26 @@ $(document).ready(function () {
 
   //popover
   //http://jsfiddle.net/apougher/rjRwV/
-  $(function(){
-      $('.color-palette').popover({
-
-          placement: 'bottom',
-          // title: 'Popover Form',
-          html:true,
-          content:  $('#myForm').html()
-      }).on('click', function(){
-        // had to put it within the on click action so it grabs the correct info on submit
-        $('.btn-primary').click(function(){
-         $('#result').after("form submitted by " + $('#email').val())
-          $.post('/echo/html/',  {
-              email: $('#email').val(),
-              name: $('#name').val(),
-              gender: $('#gender').val()
-          }, function(r){
-            $('#pops').popover('hide')
-            $('#result').html('resonse from server could be here' )
-          })
-        })
-    })
-  })
+  // $(function(){
+  //     $('.color-palette').popover({
+  //         placement: 'bottom',
+  //         html:true,
+  //         content:  $('#myForm').html()
+  //     }).on('click', function(){
+  //       // had to put it within the on click action so it grabs the correct info on submit
+  //       $('.btn-primary').click(function(){
+  //        $('#result').after("form submitted by " + $('#email').val())
+  //         $.post('/echo/html/',  {
+  //             email: $('#email').val(),
+  //             name: $('#name').val(),
+  //             gender: $('#gender').val()
+  //         }, function(r){
+  //           $('#pops').popover('hide')
+  //           $('#result').html('resonse from server could be here' )
+  //         })
+  //       })
+  //   })
+  // })
 
 
 

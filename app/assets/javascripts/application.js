@@ -56,7 +56,7 @@ window.colorSelector = function(tracker, options){
 }
 
 //refactor to combine incrementColorTracker and colorSelector
-window.incrementColorTracker = function(colorTracker){
+window.incrementColorTracker = function(tracker){
   tracker+=1;
   if (tracker >= 6){
     tracker = 0;

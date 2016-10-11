@@ -15,25 +15,28 @@ $.each($(".sidebar_user_box_instance .check"), function(){
 });
 
 if (current_user_id == selected_user_id){
+  //checks if current user toggle box already exists
+  if ($("#current-user-toggle-box").children().length > 0){
+    //if so, current box removed before proceeding
+    $("#current-user-toggle-box").children().remove()
+  }
+
   $("#current-user-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user: @user}%>").ready(function () {
+  //actions to load sidebar toggle box
+  // refactor with callback
+  var jquery_string_paint = "#user_" + selected_user_id + ".sidebar_user_box_instance"
+  $(jquery_string_paint).find(".paint-brush").last().css('background-color', colorObj.colorCode);
+  $(jquery_string_paint).find(".paint-brush").last().attr('id', "color_" + colorObj.refVal);
+  //refactor: overwrites existing id; likely wait until refactor for multiple paragraphs
+  //note, don't change this when selected_user != current_user
 
-    //actions to load sidebar toggle box
-      // refactor with callback
-      var jquery_string_paint = "#user_" + selected_user_id + ".sidebar_user_box_instance"
-      $(jquery_string_paint).find(".paint-brush").last().css('background-color', colorObj.colorCode);
-      $(jquery_string_paint).find(".paint-brush").last().attr('id', "color_" + colorObj.refVal);
-      //refactor: overwrites existing id; likely wait until refactor for multiple paragraphs
-      $("#main-record-index").attr('id', "main-record-index-color-" + colorObj.refVal);
-
-    //actions to load highlights
-    $("#content-div > div> p").html(
-      colorizedContent(colorObj.colorCode, snippets, speechContent)
-    )
-
+  //actions to load highlights
+  $("#content-div > div> p").html(
+    colorizedContent(colorObj.colorCode, snippets, speechContent));
+  $("#main-record-index").attr('id', "main-record-index-color-" + colorObj.refVal);
 
 
-      //this will overwrite other property
-      // $(".pant-brush").attr('id', "user_" + selected_user_id);
+  incrementColorTracker(colorOptionsTracker)
 
   });
 } else {
