@@ -1,6 +1,8 @@
 $(document).ready(function() {
   //this will be used for tracking the selected users
 
+  //selectedHighlights will be removed once AJAX requests are submitted after each iteration
+  var selectedHighlights =[];
 
   if (gon.snippets){
     $.ajax({
@@ -23,7 +25,6 @@ $(document).ready(function() {
     // e.stopPropogation();
     // var contentDiv = $("content-div");
     record()
-    debugger
   });
 
   function record(){

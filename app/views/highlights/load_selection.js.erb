@@ -29,10 +29,15 @@ if (current_user_id == selected_user_id){
   });
 } else {
   $("#selected-users-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user: @user}%>").ready(function () {
-      $("#content-div > p").html(
-        colorizedContent("rgb(255, 133, 168)", snippets, speechContent)
-      )
-      $("#content-div").attr('id', "user_" + selected_user_id);
+    $("#content-div").attr('id', "user_" + selected_user_id);
+
+    $("#content-div > p").html(
+      colorizedContent(color, snippets, speechContent)
+    )
+
+    var jquery_string_paint = "#user_" + selected_user_id + ".sidebar_user_box_instance"
+    $(jquery_string_paint).find(".paint-brush").last().css('background-color', color);
+
   });
 }
 
