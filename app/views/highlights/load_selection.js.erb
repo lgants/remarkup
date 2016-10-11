@@ -8,19 +8,18 @@ var selected_user_id = <%= @user.id.to_json.html_safe %>
 
 var color = colorSelector(colorOptionsTracker, colorOptions)
 
-
 // sets the background of all to unchecked
 $.each($(".sidebar_user_box_instance .check"), function(){
   $(this).html("<i class='fa fa-square-o' aria-hidden='true'></i>");
 });
 
 if (current_user_id == selected_user_id){
-  $("#current-user-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user:  @user}%>").ready(function () {
+  $("#current-user-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user: @user}%>").ready(function () {
 
-      $(".content-div").attr('id', "user_" + selected_user_id);
+      $("#content-div").attr('id', "user_" + selected_user_id);
 
 
-      $(".content-div > p").html(
+      $("#content-div > p").html(
         colorizedContent(color, snippets, speechContent)
       )
 
@@ -41,11 +40,11 @@ if (current_user_id == selected_user_id){
 
   });
 } else {
-  $("#selected-users-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user:  @user}%>").ready(function () {
-      $(".content-div > p").html(
+  $("#selected-users-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user: @user}%>").ready(function () {
+      $("#content-div > p").html(
         colorizedContent("rgb(255, 133, 168)", snippets, speechContent)
       )
-      $(".content-div").attr('id', "user_" + selected_user_id);
+      $("#content-div").attr('id', "user_" + selected_user_id);
   });
 }
 

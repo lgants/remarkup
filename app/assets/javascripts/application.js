@@ -64,7 +64,6 @@ var colorOptions = [
 
 
 
-
 // this is the old autocomplete
 // <script type="text/javascript">
 //   $(function() {

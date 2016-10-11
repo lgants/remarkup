@@ -2,24 +2,28 @@ $(document).ready(function() {
   //this will be used for tracking the selected users
 
 
-if (gon.snippets){
-  $.ajax({
-    type: 'GET',
-    url: '/load_selection_route',
-    data: {data: {user_id: gon.user_id, speech_id: gon.speech_id}}
-  })
-}
-
-
-  var selectedHighlights = [];
+  if (gon.snippets){
+    $.ajax({
+      type: 'GET',
+      url: '/load_selection_route',
+      data: {data: {user_id: gon.user_id, speech_id: gon.speech_id}}
+    })
+  }
 
   $('#add-highlights-button').on('click', function(e){
-    //changes the background color for demonstration purposes
     console.log("clicked add-highlights-button");
+
+    // debugger
+    // $.ajax({
+    //   type: 'POST',
+    //   url: "/highlights",
+    //   data: {data: {snippets: JSON.stringify("initial"), speech_id: JSON.stringify(gon.user_id)}}
+    // })
+
     // e.stopPropogation();
-    var contentDiv = document.getElementByClassName("content-div");
-        debugger
+    // var contentDiv = $("content-div");
     record()
+    debugger
   });
 
   function record(){
@@ -27,7 +31,10 @@ if (gon.snippets){
       console.log("clicked main record index", this);
       var result = getSelectionCharOffsetsWithin(this);
       selectedHighlights.push([result.start, result.end]);
+      debugger
       alert(selectedHighlights);
+
+      // this is where i will add the patch action
     })
   }
 

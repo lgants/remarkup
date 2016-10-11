@@ -3,6 +3,11 @@ class HighlightsController < ApplicationController
   # before action check_highlight used to check whether highlight alread exists
 
 
+  def create_or_update_selection
+
+
+  end
+
 
 
   def load_selection
@@ -41,6 +46,8 @@ class HighlightsController < ApplicationController
   # GET /highlights/1/edit
   def edit
   end
+
+
 
   # POST /highlights
   # POST /highlights.json
