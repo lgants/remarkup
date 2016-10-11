@@ -26,18 +26,6 @@ if (current_user_id == selected_user_id){
       var jquery_string_paint = "#user_" + selected_user_id + ".sidebar_user_box_instance"
       $(jquery_string_paint).find(".paint-brush").last().css('background-color', color);
 
-      // // sets the background of all to unchecked
-      // var jquery_string_uncheck = "#user_" + selected_user_id + ".sidebar_user_box_instance"
-      // $(jquery_string_uncheck).find(".check").each(function(index, object){
-      //   object.html("<i class='fa fa-square-o' aria-hidden='true'></i>");
-      // })
-
-      // // sets the background of the last to checked
-      // var jquery_string_check = "#user_" + selected_user_id + ".sidebar_user_box_instance"
-      // $(jquery_string_check).find(".check").last().html("<i class='fa fa-check-square-o' aria-hidden='true'></i>");
-
-
-
   });
 } else {
   $("#selected-users-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user: @user}%>").ready(function () {

@@ -19,10 +19,6 @@
 // require turbolinks
 //= require_tree .
 
-
-
-
-
 //makes this a global function
 window.colorizedContent = function(color, snippets, uncolorizedSpeechContent){
   var newHTML = "";
@@ -36,7 +32,6 @@ window.colorizedContent = function(color, snippets, uncolorizedSpeechContent){
   return newHTML;
 }
 
-
 window.colorSelector = function(tracker, options){
   tracker+=1;
 
@@ -49,7 +44,6 @@ window.colorSelector = function(tracker, options){
   return options[tracker]
 }
 
-
 var colorOptionsTracker = 0;
 var colorOptions = [
   "rgb(255, 243, 133)",
@@ -59,38 +53,3 @@ var colorOptions = [
   "rgb(133, 194, 255)",
   "rgb(255, 133, 243)"
 ]
-
-
-
-
-
-// this is the old autocomplete
-// <script type="text/javascript">
-//   $(function() {
-//     $('#select_origin').autocomplete({
-//       minLength: 3,
-//       source: '<%= users_path(:json) %>',
-//       focus: function(event, ui) {
-//         $('#select_origin').val(ui.item.user.first_name);
-//         return false;
-//       },
-//       select: function(event, ui) {
-//         $('#select_origin').val(ui.item.user.first_name);
-//         $('#link_origin_id').val(ui.item.user.id);
-//           return false;
-//       }
-//       })
-//       .data( "autocomplete" )._renderItem = function( ul, item ) {
-//         return $( "<li></li>" )
-//           .data( "item.autocomplete", item )
-//             .append( "<a>" + item.user.first_name + item.user.last_name + "</a>" )
-//               .appendTo( ul );
-//       };
-//     });
-// </script>
-
-
-
-
-//popover with form
-//made edits, source: http://jsfiddle.net/apougher/rjRwV/

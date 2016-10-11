@@ -12,6 +12,6 @@
 <% end %>
 
 
-<% @speeches.each do |speech| %>
+<% @speeches.reverse_each do |speech| %>
   <%= render partial: 'speech_partial', locals: { speech: speech } %>
 <% end %>

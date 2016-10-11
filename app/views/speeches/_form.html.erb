@@ -15,7 +15,7 @@
         <div class="form-group">
           <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-left:0px;">
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="exampleInputEmail1">Search Speakers</label>
                 <div class="input-group">
                   <input type="text" class="form-control" placeholder="search for...">
@@ -23,7 +23,7 @@
                     <button class="btn btn-default" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
                   </span>
                 </div>
-              </div>
+              </div> -->
               <div class="form-group">
                 <label>Speaker First Name</label>
                 <%= f.text_field :first_name, class: "form-control", placeholder: "first name..." %>
@@ -51,7 +51,7 @@
                   <div class="col-lg-4 col-md-4 col-sm-4" style="padding-right:0px">
                     <label>Venue State</label>
                     <div class="btn-group" style="width:100%">
-                        <%= f.select(:state, options_for_select(us_states), {}, { class: "form-control"}) %>
+                        <%= f.select(:state, options_for_select(us_states, params[:state]), {}, { class: "form-control"}) %>
                     </div>
                   </div>
                 </div>

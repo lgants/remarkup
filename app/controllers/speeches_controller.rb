@@ -39,6 +39,7 @@ class SpeechesController < ApplicationController
   def create
     @speech = Speech.new(speech_params)
     @speech.creator_id = current_user.id
+    # @speech.speech_date = Date.new(@speech.speech_date[6..9].to_f, @speech.speech_date[3..4].to_f, @speech.speech_date[0..1].to_f)
 
     respond_to do |format|
       if @speech.save
@@ -75,13 +76,6 @@ class SpeechesController < ApplicationController
     end
   end
 
-
-
-
-
-
-
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_speech
@@ -90,6 +84,6 @@ class SpeechesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def speech_params
-      params.require(:speech).permit(:title, :content, :speech_date, :created_date, :venue, :city, :first_name, :last_name, :public_figure_id, :creator_id, :approved, :tags)
+      params.require(:speech).permit(:title, :content, :speech_date, :created_date, :venue, :city, :state, :first_name, :last_name, :public_figure_id, :creator_id, :approved, :tags)
     end
 end

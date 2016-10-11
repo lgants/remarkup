@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  # validate :email, uniqueness: { case_sensitive: false }
+  # validate :last_name, :presence => true
 
     def autocomplete
       @users = User.order(:first_name).where("first_name LIKE ? OR last_name LIKE ?", "%#{params[:term]}%", "%#{params[:term]}%")
@@ -18,18 +20,7 @@ class UsersController < ApplicationController
     end
 
 
-
   # def index
-  # # I will explain this part in a moment.
-  #   if params[:term]
-  #     @users = User.find(:all,:conditions => ['given_name LIKE ?', "#{params[:term]}%"])
-  #   else
-  #     @users = User.all
-  #   end
-  #   respond_to do |format|
-  #     format.html
-  #     format.json { render :json => @users.to_json }
-  #   end
   # end
 
   # GET /users/1
