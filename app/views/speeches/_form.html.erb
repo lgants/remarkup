@@ -25,6 +25,10 @@
                 </div>
               </div> -->
               <div class="form-group">
+                <label>Speech Date</label>
+                <%= f.text_field :speech_date, class: "form-control datepicker", placeholder: "speech date...", "data-provide" => "datepicker" %>
+              </div>
+              <div class="form-group">
                 <label>Speaker First Name</label>
                 <%= f.text_field :first_name, class: "form-control", placeholder: "first name..." %>
               </div>
@@ -35,36 +39,29 @@
             </div><!-- left-column -->
             <div class="col-lg-6 col-md-6 col-sm-6" style="padding-right:0px; padding-left:0px;">
               <div class="form-group">
-                <label>Speech Date</label>
-                <%= f.text_field :speech_date, class: "form-control datepicker", placeholder: "speech date...", "data-provide" => "datepicker" %>
-              </div>
-              <div class="form-group">
                 <label>Venue Name</label>
                 <%= f.text_field :venue, class: "form-control", placeholder: "venue name..." %>
               </div>
               <div class="form-group">
-                <div class="row">
-                  <div class="col-lg-8 col-md-8 col-sm-8" style="padding-left:0px; padding-right:0px">
-                    <label>Venue City</label>
-                    <%= f.text_field :city, class: "form-control", placeholder: "city..." %>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-4" style="padding-right:0px">
-                    <label>Venue State</label>
-                    <div class="btn-group" style="width:100%">
-                        <%= f.select(:state, options_for_select(us_states, params[:state]), {}, { class: "form-control"}) %>
-                    </div>
-                  </div>
+                <label>Venue City</label>
+                <%= f.text_field :city, class: "form-control", placeholder: "city..." %>
+              </div>
+              <div class="form-group">
+                <label>Venue State</label>
+                <div class="btn-group" style="width:100%">
+                  <%= f.select(:state, options_for_select(us_states, params[:state]), {}, { class: "form-control"}) %>
                 </div>
               </div>
             </div><!-- right-column -->
-            <div class="form-group">
-              <label>Title</label>
-              <%= f.text_field :title, class: "form-control", placeholder: "title..." %>
-            </div>
-            <div class="form-group">
-              <label for="exampleTextarea">Content</label>
-              <%= f.text_area :content, class: "form-control", rows: "3", placeholder: "speech content..." %>
-            </div>
+          </div>
+          <div class="form-group">
+            <label>Title</label>
+            <%= f.text_field :title, class: "form-control", placeholder: "title..." %>
+          </div>
+          <div class="form-group">
+            <label for="exampleTextarea">Content</label>
+            <%= f.text_area :content, class: "form-control", rows: "6", placeholder: "speech content..." %>
+          </div>
           </div>
           <div class="row">
             <%= f.button class: "btn btn-default", type: "submit" do %>

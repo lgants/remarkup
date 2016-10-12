@@ -5,10 +5,22 @@
   <div class="jumbotron" style="text-align:center">
     <h1><i class="fi-comment-quotes"></i> remarkup<h1>
     <h3>Make Your Markup</h3>
-    <p>In an era where soundbites live forever online, public figures increasingly use prepared remarks to communicate with the public. These remarks tend to be wordy, lengthy, and generally difficult to digest. Remarkup empowers users to quickly and easily traverse these remarks, thereby improving understanding of important public issues.</p>
-    <a class="btn btn-default btn-lg" href="#" role="button">Sign In</a>
-    <a class="btn btn-default btn-lg" href="#" role="button">Sign Up</a>
+    <p style="line-height: 1.1">In an era where soundbites live forever online, public figures increasingly use prepared remarks to communicate with the public. These remarks tend to be wordy, lengthy, and generally difficult to digest. Remarkup empowers users to quickly and easily traverse these remarks, thereby improving understanding of important public issues.</p>
+    <br />
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <div style="float:left">
+            <%= button_to "Sign In", "/sessions/new", method: :get, class: "btn btn-default btn-lg" %>
+          </div>
+          <div style="float:right">
+            <%= button_to "Sign Up", "/users/new", method: :get, class: "btn btn-default btn-lg" %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
 <% end %>
 
 
