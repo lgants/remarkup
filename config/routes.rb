@@ -19,13 +19,4 @@ Rails.application.routes.draw do
 
 
 
-
-
-
-
-
-
-  # get "/gethighlight", to: "highlights/highlight_id"
-  # delete "/delete_highlights", to: "highlights#test"
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

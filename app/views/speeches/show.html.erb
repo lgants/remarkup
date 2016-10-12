@@ -12,10 +12,6 @@
 
 var ready;
 ready = (function() {
-  
-
-
-
 
   // $('#plus-button').prop('disabled', true);
   $( "#user-search-input" ).autocomplete({
@@ -47,11 +43,11 @@ ready = (function() {
           type: 'GET',
           url: '/load_selection_route',
           data: {data: {user_id: object.item.user_id, speech_id: object.item.speech_id}}
-        })
+        });
         event.preventDefault();
       return false;
     }
-  })
+  });
   .autocomplete( "instance" )._renderItem = function( ul, item ) {
     return $( "<li>" )
       .append( "<div>" + item.user_full_name + "</div>" )

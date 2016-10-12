@@ -1,29 +1,24 @@
 
 
-
-//important: need line below for post requests
-var highlight_id = <%= @highlights.id %>
-
-
-
 var snippets = <%= JSON.parse(@highlights.snippets) %>
 var speechContent = <%= @speech.content.to_json.html_safe %>
 var current_user_id = <%= @user.id.to_json.html_safe %>
-var speechId = <%= @speech.id.to_json.html_safe %>
+
 
 var colorObj = colorSelector(colorOptionsTracker, colorOptions)
-
 
 // sets the background of all toggle boxes to unchecked
 $.each($(".sidebar_user_box_instance .check"), function(){
   $(this).html("<i class='fa fa-square-o' aria-hidden='true'></i>");
 });
 
+
 //checks if current user toggle box already exists
 if ($("#current-user-toggle-box").children().length > 0){
   //if so, current box removed before proceeding
   $("#current-user-toggle-box").children().remove()
 }
+
 //add conditional logic later to change the current toggle box or prevent color change
 
 
@@ -37,7 +32,14 @@ $("#current-user-toggle-box").append("<%= j render partial: 'layouts/sidebar_use
   $(jquery_string_paint).find(".paint-brush").last().attr('id', "color_" + colorObj.refVal);
   //refactor: overwrites existing id; likely wait until refactor for multiple paragraphs
   //note, don't change this when selected_user != current_user
-});
+
+  //actions to load highlights
+  $("#content-div > div> p").html(
+    colorizedContent(colorObj.colorCode, snippets, speechContent));
+//   $("#main-record-index").attr('id', "main-record-index-color-" + colorObj.refVal);
+// });
+
+
 
 //increment the color tracker
 incrementColorTracker(colorOptionsTracker);
