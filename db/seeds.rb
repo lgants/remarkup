@@ -8,65 +8,65 @@
 
 
 
-    # create admin
-    myself = User.create(
-      first_name: "Logan",
-      last_name: "Gants",
-      email: "lgants@gmail.com",
-      # phone: ,
-      organization: "Flatiron School",
-      password: "password",
-      password_confirmation: "password",
-      biography: "This is my awesome bio.",
-      public_figure: false,
-      entity: false,
-      moderator: true,
-      admin: true,
+# create admin
+myself = User.create(
+  first_name: "Logan",
+  last_name: "Gants",
+  email: "lgants@gmail.com",
+  # phone: ,
+  organization: "Flatiron School",
+  password: "password",
+  password_confirmation: "password",
+  biography: "This is my awesome bio.",
+  public_figure: false,
+  entity: false,
+  moderator: true,
+  admin: true,
+)
+
+
+# create users
+25.times do
+  user = User.create(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: Faker::Internet.free_email,
+    phone: Faker::PhoneNumber.phone_number,
+    organization: Faker::Company.name,
+    password: "password",
+    password_confirmation: "password",
+    biography: Faker::Lorem.sentence(rand(5..20)),
+    # default_color: ,
+    public_figure: false,
+    entity: false,
+    moderator: false,
+    admin: false,
+  )
+
+  # create user speeches
+  2.times do
+    Speech.create(
+      title: Faker::Lorem.sentence(rand(1..5)),
+      content: Faker::Lorem.paragraph(rand(5..20)),
+      speech_date: "#{rand(1..12)}/#{rand(1..29)}/#{rand(2015..2016)}",
+      venue: Faker::University.name,
+      city: Faker::Address.city,
+      state: Faker::Address.state,
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
+      # public_figure_id: ,
+      creator_id: user.id,
+      pending: false,
+      # tags: ,
     )
 
-
-    # create users
-    25.times do
-      user = User.create(
-        first_name: Faker::Name.first_name,
-        last_name: Faker::Name.last_name,
-        email: Faker::Internet.free_email,
-        phone: Faker::PhoneNumber.phone_number,
-        organization: Faker::Company.name,
-        password: "password",
-        password_confirmation: "password",
-        biography: Faker::Lorem.sentence(rand(5..20)),
-        # default_color: ,
-        public_figure: false,
-        entity: false,
-        moderator: false,
-        admin: false,
+    # create user highlights
+    10.times do
+      Highlight.create(
+        user_id: user.id,
+        speech_id: rand(1..50),
+        snippets: "[[10,20]]"
       )
-
-      # create user speeches
-      2.times do
-        Speech.create(
-          title: Faker::Lorem.sentence(rand(1..5)),
-          content: Faker::Lorem.paragraph(rand(5..20)),
-          speech_date: "#{rand(1..12)}/#{rand(1..29)}/#{rand(2015..2016)}",
-          venue: Faker::University.name,
-          city: Faker::Address.city,
-          state: Faker::Address.state,
-          first_name: Faker::Name.first_name,
-          last_name: Faker::Name.last_name,
-          # public_figure_id: ,
-          creator_id: user.id,
-          pending: false,
-          # tags: ,
-        )
-
-        # create user highlights
-        10.times do
-          Highlight.create(
-            user_id: user.id,
-            speech_id: rand(1..50),
-            snippets: "[[10,20]]"
-          )
-        end
-      end
     end
+  end
+end

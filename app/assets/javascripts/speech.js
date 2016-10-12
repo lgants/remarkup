@@ -14,12 +14,10 @@ $(document).ready(function() {
 
   $('#add-highlights-button').on('click', function(e){
     console.log("clicked add-highlights-button");
-
-    // debugger
     // $.ajax({
     //   type: 'POST',
     //   url: "/highlights",
-    //   data: {data: {snippets: JSON.stringify("initial"), speech_id: JSON.stringify(gon.user_id)}}
+    //   data: {data: {snippets: JSON.stringify("[[]]"), speech_id: JSON.stringify(gon.user_id)}}
     // })
 
     // e.stopPropogation();
