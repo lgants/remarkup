@@ -3,21 +3,21 @@ class HighlightsController < ApplicationController
   # before action check_highlight used to check whether highlight alread exists
 
 
-  def load_selection
-    # this is all relative to the selected user (current or otherwise) and speech
-
-    user_id = JSON.parse(params[:data][:user_id])
-    speech_id = JSON.parse(params[:data][:speech_id])
-
-    @user = User.find(user_id)
-    @highlights = Highlight.find_by(user_id: user_id, speech_id: speech_id)
-    @speech = Speech.find(speech_id)
-    @current_user = current_user
-
-    respond_to do |format|
-      format.js {}
-    end
-  end
+  # def load_selection
+  #   # this is all relative to the selected user (current or otherwise) and speech
+  #
+  #   user_id = JSON.parse(params[:data][:user_id])
+  #   speech_id = JSON.parse(params[:data][:speech_id])
+  #
+  #   @user = User.find(user_id)
+  #   @highlights = Highlight.find_by(user_id: user_id, speech_id: speech_id)
+  #   @speech = Speech.find(speech_id)
+  #   @current_user = current_user
+  #
+  #   respond_to do |format|
+  #     format.js {}
+  #   end
+  # end
 
 
   # GET /highlights
@@ -60,28 +60,26 @@ class HighlightsController < ApplicationController
     user_id = current_user.id
     snippets = JSON.parse(params[:data][:snippets])
 
-    highlights = Highlight.new(speech_id: speech_id, user_id: user_id, snippets: snippets)
-
+    # check if highlight already exists
+    if highlights = Highlight.find_by(user_id: user_id, speech_id: speech_id)
+      highlights.update(snippets: JSON.parse(highlights.snippets).push(snippets))
+    else
+      highlights = Highlight.new(speech_id: speech_id, user_id: user_id, snippets: snippets)
+      highlights.save
+    end
 
     @highlights = highlights
     @speech = Speech.find(speech_id)
     @user = current_user
 
-
     respond_to do |format|
-      if highlights.save
-        format.js {}
-      # else
-      #   format.html { render :new }
-      #   format.json { render json: highlight.errors, status: :unprocessable_entity }
-      end
+      format.js {}
     end
   end
 
   # PATCH/PUT /highlights/1
   # PATCH/PUT /highlights/1.json
   def update
-
     speech_id = params[:data][:speech_id].to_i
     user_id = current_user.id
     snippets = JSON.parse(params[:data][:snippets])
@@ -95,14 +93,8 @@ class HighlightsController < ApplicationController
     @user = current_user
 
     respond_to do |format|
-      if true
-        format.js {}
-      # else
-      #   format.html { render :edit }
-      #   format.json { render json: highlight.errors, status: :unprocessable_entity }
-      end
+      format.js {}
     end
-
   end
 
   # DELETE /highlights/1

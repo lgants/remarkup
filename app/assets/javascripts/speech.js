@@ -12,8 +12,10 @@ $(document).ready(function() {
       url: '/highlights/' + gon.highlight_id,
       data: {data: {user_id: gon.user_id, speech_id: gon.speech_id}}
     })
+  } else {
+    //need to refactor later when there is more time
+    $("#quick-access-toggle-box").append("<div class='row'><div class='col-lg-12 col-md-12 col-sm-12'><button id='add-highlights-button' type='button' class='btn btn-default btn-mini btn-block'>Add Highlights</button></div></div>")
   }
-
 
   $('#add-highlights-button').on('click', function(e){
     console.log("clicked add-highlights-button");
@@ -21,27 +23,20 @@ $(document).ready(function() {
       type: 'POST',
       url: "/highlights",
       data: {data: {snippets: JSON.stringify("[]"), speech_id: gon.speech_id}}
-    })
-
-    // e.stopPropogation();
-    // var contentDiv = $("content-div");
-    record()
+    });
   });
 
-  function record(){
-    $("#main-record-index").on('mouseup', function(){
-      console.log("clicked main record index", this);
-      var result = getSelectionCharOffsetsWithin(this);
-      // this is where i will add the post action
-      //i don't necessarily need a patch action at this time; simply overwrite the existing entry on each submit
-      // alert(selectedHighlights);
-      $.ajax({
-        type: "PATCH",
-        url: "/highlights/" + gon.highlight_id,
-        data: {data: {snippets: `[${result.start},${result.end}]`, speech_id: gon.speech_id}}
-      });
-    })
-  }
+
+  $("#content-div p").on('mouseup', function(){
+    console.log("clicked content div p", this);
+    var result = getSelectionCharOffsetsWithin(this);
+    $.ajax({
+      type: "PATCH",
+      url: "/highlights/" + gon.highlight_id,
+      data: {data: {snippets: `[${result.start},${result.end}]`, speech_id: gon.speech_id}}
+    });
+  })
+
 
   function getSelectionCharOffsetsWithin(element) {
     var start = 0, end = 0;
@@ -68,31 +63,6 @@ $(document).ready(function() {
     };
   }
 
-  // $("#save-highlights-button").on("click", function(){
-  //   var url = window.location.href
-  //   var speechId = url.substring(url.lastIndexOf("/") + 1, url.length);
-  //   $.ajax({
-  //     type: 'POST',
-  //     url: "/highlights",
-  //     data: {data: {snippets: JSON.stringify(selectedHighlights), speech_id: speechId}}
-  //   })
-  //   event.preventDefault();
-  // });
-  //
-  // $("#update-highlights-button").click(function(event){
-  //   var url = window.location.href
-  //   var speechId = url.substring(url.lastIndexOf("/") + 1, url.length);
-  //   $.ajax({
-  //       type: "PATCH",
-  //       url: "/highlights/" + gon.highlight_id,
-  //       dataType: "json",
-  //       data: {data: {snippets: JSON.stringify(selectedHighlights), speech_id: speechId}},
-  //       complete: function(){
-  //         alert("success")
-  //       }
-  //   });
-  //   event.preventDefault();
-  // });
 
 
   $("#delete-highlights-button").click(function(event){
@@ -104,5 +74,6 @@ $(document).ready(function() {
       data: {data: {speech_id: speechId}}
     });
   });
+
 
 })

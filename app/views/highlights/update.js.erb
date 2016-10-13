@@ -1,11 +1,6 @@
-
-
 var snippets = <%= JSON.parse(@highlights.snippets) %>
 var speechContent = <%= @speech.content.to_json.html_safe %>
 var current_user_id = <%= @user.id.to_json.html_safe %>
-
-
-var colorObj = colorSelector(colorOptionsTracker, colorOptions)
 
 // sets the background of all toggle boxes to unchecked
 $.each($(".sidebar_user_box_instance .check"), function(){
@@ -13,33 +8,22 @@ $.each($(".sidebar_user_box_instance .check"), function(){
 });
 
 
+var colorObj = colorSelector(colorOptionsTracker, colorOptions)
+
 //checks if current user toggle box already exists
 if ($("#current-user-toggle-box").children().length > 0){
   //if so, current box removed before proceeding
   $("#current-user-toggle-box").children().remove()
 }
 
-//add conditional logic later to change the current toggle box or prevent color change
-
-
-
-//appends the new user toggle box
-$("#current-user-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user: @user}%>").ready(function () {
-  //refactor with callback
-
+//actions to load toggle box
+$("#current-user-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user: @current_user}%>").ready(function(){
   var jquery_string_paint = "#user_" + current_user_id + ".sidebar_user_box_instance"
   $(jquery_string_paint).find(".paint-brush").last().css('background-color', colorObj.colorCode);
   $(jquery_string_paint).find(".paint-brush").last().attr('id', "color_" + colorObj.refVal);
-  //refactor: overwrites existing id; likely wait until refactor for multiple paragraphs
-  //note, don't change this when selected_user != current_user
 
   //actions to load highlights
-  $("#content-div > div> p").html(
-    colorizedContent(colorObj.colorCode, snippets, speechContent));
-//   $("#main-record-index").attr('id', "main-record-index-color-" + colorObj.refVal);
-// });
-
-
-
-//increment the color tracker
-incrementColorTracker(colorOptionsTracker);
+  $("#main-record-index").html(colorizedContent(colorObj.colorCode, snippets, speechContent));
+  // $("#content-div > p").html(colorizedContent(colorObj.colorCode, snippets, speechContent));
+  // $("#main-record-index").attr('id', "main-record-index-color-" + colorObj.refVal);
+});

@@ -14,7 +14,12 @@ var speechId = <%= @speech.id.to_json.html_safe %>
 var colorObj = colorSelector(colorOptionsTracker, colorOptions)
 
 
-// sets the background of all toggle boxes to unchecked
+
+// removes the add button
+$("#add-highlights-button").remove()
+
+
+// sets the icon of all toggle boxes to unchecked
 $.each($(".sidebar_user_box_instance .check"), function(){
   $(this).html("<i class='fa fa-square-o' aria-hidden='true'></i>");
 });
@@ -31,13 +36,12 @@ if ($("#current-user-toggle-box").children().length > 0){
 //appends the new user toggle box
 $("#current-user-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user: @user}%>").ready(function () {
   //refactor with callback
-
   var jquery_string_paint = "#user_" + current_user_id + ".sidebar_user_box_instance"
   $(jquery_string_paint).find(".paint-brush").last().css('background-color', colorObj.colorCode);
   $(jquery_string_paint).find(".paint-brush").last().attr('id', "color_" + colorObj.refVal);
-  //refactor: overwrites existing id; likely wait until refactor for multiple paragraphs
-  //note, don't change this when selected_user != current_user
-});
 
-//increment the color tracker
-incrementColorTracker(colorOptionsTracker);
+
+  $("#main-record-index").html(colorizedContent(colorObj.colorCode, snippets, speechContent));
+  // $("#content-div > p").html(colorizedContent(colorObj.colorCode, snippets, speechContent));
+  // $("#main-record-index").attr('id', "main-record-index-color-" + colorObj.refVal);
+});
