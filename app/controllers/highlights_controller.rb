@@ -29,16 +29,21 @@ class HighlightsController < ApplicationController
   # GET /highlights/1
   # GET /highlights/1.json
   def show
-    binding.pry
+    speech_id = params[:data][:speech_id].to_i
+    user_id = params[:data][:user_id].to_i
 
+    highlights = Highlight.find_by(user_id: user_id, speech_id: speech_id)
 
+    @highlights = highlights
+    @speech = Speech.find(speech_id)
+    @user = User.find(user_id)
+    @current_user = current_user
 
+    respond_to do |format|
+      format.js {}
+    end
   end
 
-  # GET /highlights/new
-  def new
-    # @highlight = Highlight.new
-  end
 
   # GET /highlights/1/edit
   def edit
@@ -89,7 +94,6 @@ class HighlightsController < ApplicationController
     @speech = Speech.find(speech_id)
     @user = current_user
 
-    binding.pry
     respond_to do |format|
       if true
         format.js {}

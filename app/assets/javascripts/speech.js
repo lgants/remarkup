@@ -3,9 +3,10 @@ $(document).ready(function() {
 
   //selectedHighlights will be removed once AJAX requests are submitted after each iteration
   // var selectedHighlights =[];
-    debugger
-  if (gon.snippets){
 
+
+  //note that i need to send the user id here because on the other side the show action will correspond to self and others
+  if (gon.snippets){
     $.ajax({
       type: 'GET',
       url: '/highlights/' + gon.highlight_id,

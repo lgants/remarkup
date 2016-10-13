@@ -1,57 +1,60 @@
 
-//
-// var snippets = <%= JSON.parse(@highlights.snippets) %>
-// var speechContent = <%= @speech.content.to_json.html_safe %>
-// var current_user_id = <%= @current_user.id.to_json.html_safe %>
-// var selected_user_id = <%= @user.id.to_json.html_safe %>
-//
-//
-// var colorObj = colorSelector(colorOptionsTracker, colorOptions)
-//
-//
-// // sets the background of all toggle boxes to unchecked
-// $.each($(".sidebar_user_box_instance .check"), function(){
-//   $(this).html("<i class='fa fa-square-o' aria-hidden='true'></i>");
-// });
-//
-// if (current_user_id == selected_user_id){
-//   //checks if current user toggle box already exists
-//   if ($("#current-user-toggle-box").children().length > 0){
-//     //if so, current box removed before proceeding
-//     $("#current-user-toggle-box").children().remove()
-//   }
-//
-//   $("#current-user-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user: @user}%>").ready(function () {
-//   //actions to load sidebar toggle box
-//   // refactor with callback
-//   var jquery_string_paint = "#user_" + selected_user_id + ".sidebar_user_box_instance"
-//   $(jquery_string_paint).find(".paint-brush").last().css('background-color', colorObj.colorCode);
-//   $(jquery_string_paint).find(".paint-brush").last().attr('id', "color_" + colorObj.refVal);
-//   //refactor: overwrites existing id; likely wait until refactor for multiple paragraphs
-//   //note, don't change this when selected_user != current_user
-//
-//   //actions to load highlights
-//   $("#content-div > div> p").html(
-//     colorizedContent(colorObj.colorCode, snippets, speechContent));
-//   $("#main-record-index").attr('id', "main-record-index-color-" + colorObj.refVal);
-//
-//
-//   incrementColorTracker(colorOptionsTracker)
-//
-//   });
-// } else {
-//   $("#selected-users-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user: @user}%>").ready(function () {
-//     $("#content-div").attr('id', "user_" + selected_user_id);
-//
-//     $("#content-div > p").html(
-//       colorizedContent(colorObj.colorCode, snippets, speechContent)
-//     )
-//
-//     var jquery_string_paint = "#user_" + selected_user_id + ".sidebar_user_box_instance"
-//     $(jquery_string_paint).find(".paint-brush").last().css('background-color', color.colorSelection);
-//
-//   });
-// }
-//
-// //clears the search input on loading new highlights
-// $("#user-search-input").val('')
+
+var snippets = <%= JSON.parse(@highlights.snippets) %>
+var speechContent = <%= @speech.content.to_json.html_safe %>
+var current_user_id = <%= @current_user.id.to_json.html_safe %>
+var selected_user_id = <%= @user.id.to_json.html_safe %>
+
+
+var colorObj = colorSelector(colorOptionsTracker, colorOptions)
+
+
+// sets the background of all toggle boxes to unchecked
+$.each($(".sidebar_user_box_instance .check"), function(){
+  $(this).html("<i class='fa fa-square-o' aria-hidden='true'></i>");
+});
+
+
+
+if (current_user_id == selected_user_id){
+  //checks if current user toggle box already exists
+  if ($("#current-user-toggle-box").children().length > 0){
+    //if so, current box removed before proceeding
+    $("#current-user-toggle-box").children().remove()
+  }
+
+  $("#current-user-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user: @user}%>").ready(function () {
+  //actions to load sidebar toggle box
+  // refactor with callback
+  var jquery_string_paint = "#user_" + selected_user_id + ".sidebar_user_box_instance"
+  $(jquery_string_paint).find(".paint-brush").last().css('background-color', colorObj.colorCode);
+  $(jquery_string_paint).find(".paint-brush").last().attr('id', "color_" + colorObj.refVal);
+  //refactor: overwrites existing id; likely wait until refactor for multiple paragraphs
+  //note, don't change this when selected_user != current_user
+
+  //actions to load highlights
+  $("#content-div > div> p").html(
+    colorizedContent(colorObj.colorCode, snippets, speechContent));
+  $("#main-record-index").attr('id', "main-record-index-color-" + colorObj.refVal);
+
+
+  incrementColorTracker(colorOptionsTracker)
+
+  });
+} else {
+  $("#selected-users-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user: @user}%>").ready(function () {
+    $("#content-div").attr('id', "user_" + selected_user_id);
+
+
+    $("#content-div > p").html(
+      colorizedContent(colorObj.colorCode, snippets, speechContent)
+    )
+
+    var jquery_string_paint = "#user_" + selected_user_id + ".sidebar_user_box_instance"
+    $(jquery_string_paint).find(".paint-brush").last().css('background-color', color.colorSelection);
+
+  });
+}
+
+//clears the search input on loading new highlights
+$("#user-search-input").val('')

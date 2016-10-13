@@ -41,14 +41,13 @@ ready = (function() {
       // });
         $.ajax({
           type: 'GET',
-          url: '/load_selection_route',
+          url: '/highlights/' + 100000000000,
           data: {data: {user_id: object.item.user_id, speech_id: object.item.speech_id}}
         });
         event.preventDefault();
       return false;
     }
-  });
-  .autocomplete( "instance" )._renderItem = function( ul, item ) {
+  }).autocomplete( "instance" )._renderItem = function( ul, item ) {
     return $( "<li>" )
       .append( "<div>" + item.user_full_name + "</div>" )
       .appendTo( ul );
