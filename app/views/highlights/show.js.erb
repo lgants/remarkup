@@ -1,0 +1,69 @@
+
+var snippets = <%= @highlights.snippets %>
+var speechContent = <%= @speech.content.to_json.html_safe %>
+var current_user_id = <%= @current_user.id.to_json.html_safe %>
+var selected_user_id = <%= @user.id.to_json.html_safe %>
+
+
+// sets the background of all toggle boxes to unchecked
+$.each($(".sidebar_user_box_instance .check"), function(){
+  $(this).html("<i class='fa fa-square-o' aria-hidden='true'></i>");
+});
+
+
+//if user is the current user
+if (current_user_id == selected_user_id){
+  var colorObj = colorSelector(colorOptionsTracker, colorOptions)
+
+  //checks if current user toggle box already exists
+  if ($("#current-user-toggle-box").children().length > 0){
+    //if so, current box removed before proceeding
+    $("#current-user-toggle-box").children().remove()
+  }
+
+
+  //actions to load toggle box
+  $("#current-user-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user: @current_user}%>").ready(function(){
+    var jquery_string_paint = "#user_" + current_user_id + ".sidebar_user_box_instance"
+    $(jquery_string_paint).find(".paint-brush").last().css('background-color', colorObj.colorCode);
+    $(jquery_string_paint).find(".paint-brush").last().attr('id', "color_" + colorObj.refVal);
+
+    //actions to load highlights
+    $("#main-record-index").html(colorizedContent(colorObj.colorCode, snippets, speechContent));
+    // $("#content-div > p").html(colorizedContent(colorObj.colorCode, snippets, speechContent));
+    // $("#main-record-index").attr('id', "main-record-index-color-" + colorObj.refVal);
+  });
+} else {
+  //this block is for when the specified user is not the current user
+
+  //incomplete - checks if the selected user is already on the page
+  // $.each($("#selected-users-toggle-box"), function(){
+  //   var user_string_check = "#user_" + selected_user_id
+  //   if $(this).attr("id") == user_string_check){
+  //     debugger
+  //   }
+  // });
+
+  incrementColorTracker(colorOptionsTracker);
+  var colorObj = colorSelector(colorOptionsTracker, colorOptions)
+
+
+  $("#selected-users-toggle-box").append("<%= j render partial: 'layouts/sidebar_user', locals: {user: @user}%>").ready(function(){
+    var jquery_string_paint = "#user_" + selected_user_id + ".sidebar_user_box_instance"
+    $(jquery_string_paint).find(".paint-brush").last().css('background-color', colorObj.colorCode);
+    $(jquery_string_paint).find(".paint-brush").last().attr('id', "color_" + colorObj.refVal);
+
+
+    //actions to load highlights
+    $("#main-record-index").html(colorizedContent(colorObj.colorCode, snippets, speechContent));
+    // $("#content-div > p").html(colorizedContent(colorObj.colorCode, snippets, speechContent));
+    // $("#main-record-index").attr('id', "main-record-index-color-" + colorObj.refVal);
+  });
+}
+
+
+//clears the search input on loading new highlights
+$("#user-search-input").val('')
+
+// //increment the color tracker
+// incrementColorTracker(colorOptionsTracker);

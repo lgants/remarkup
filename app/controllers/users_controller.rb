@@ -5,7 +5,6 @@ class UsersController < ApplicationController
 
     def autocomplete
       @users = User.order(:first_name).where("first_name LIKE ? OR last_name LIKE ?", "%#{params[:term]}%", "%#{params[:term]}%")
-      # @users = User.order(:first_name).where("first_name LIKE ?", "%#{params[:term]}%")
       @speech = Speech.find(params[:speech_id].to_f)
       respond_to do |format|
         format.html
