@@ -61,6 +61,45 @@ $(document).ready(function() {
     });
   });
 
+
+
+  //check box to retreive highlights and change check - incomplete
+  //need to add user_id attribute with in on each row in order to retrieve 
+  // $(document).on("click", "#check-user-button", function(){
+  //   console.log("clicked check-user-button");
+  //   $.each($(".sidebar_user_box_instance .check"), function(){
+  //     $(this).html("<i class='fa fa-square-o' aria-hidden='true'></i>");
+  //   });
+  //   debugger
+  //   if (!!this.parentElement.querySelector('.check').querySelector('.fa-check-square-o')){
+  //     //if selection is the check square
+  //     // clears the select row
+  //     this.parentElement.parentElement.parentElement.remove()
+  //     //replace existing highlights
+  //     $("#main-record-index").html(speechContent)
+  //   } else {
+  //     // clears the select row
+  //     this.parentElement.parentElement.parentElement.remove()
+  //   }
+  // });
+
+
+
+  //x box functionality on user box instances
+  $(document).on("click", "#hide-user-button", function(){
+    console.log("clicked hide-user-button");
+    if (!!this.parentElement.querySelector('.check').querySelector('.fa-check-square-o')){
+      //if selection is the check square
+      // clears the select row
+      this.parentElement.parentElement.parentElement.remove()
+      //replace existing highlights
+      $("#main-record-index").html(speechContent)
+    } else {
+      // clears the select row
+      this.parentElement.parentElement.parentElement.remove()
+    }
+  });
+
   $("#content-div p").on('mouseup', function(){
     console.log("clicked content div p", this);
     var result = getSelectionCharOffsetsWithin(this);
@@ -96,6 +135,10 @@ $(document).ready(function() {
     };
   }
 })
+
+
+
+
 
 
 
