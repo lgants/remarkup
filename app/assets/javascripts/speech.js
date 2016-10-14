@@ -1,11 +1,37 @@
+
+
 $(document).ready(function() {
-  //this will be used for tracking the selected users
+  $( "#user-search-input" ).autocomplete({
+    minLength: 1,
+    source: function(request, response) {
+      $.getJSON(
+        "/users/autocomplete.json",
+        { term:request.term, speech_id: gon.speech_id },
+        function(data) {
+          response(data);
+        }
+      );
+    },
+    focus: function( event, object) {
+      $( "#user-search-input" ).val( object.item.user_full_name );
+      return false;
+    },
+    select: function( event, object ) {
+        $.ajax({
+          type: 'GET',
+          url: '/highlights/' + 100000000000,
+          data: {data: {user_id: object.item.user_id, speech_id: object.item.speech_id}}
+        });
+        event.preventDefault();
+      return false;
+    }
+  }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+    return $( "<li>" )
+      .append( "<div>" + item.user_full_name + "</div>" )
+      .appendTo( ul );
+  };
 
-  //selectedHighlights will be removed once AJAX requests are submitted after each iteration
-  // var selectedHighlights =[];
 
-
-  //note that i need to send the user id here because on the other side the show action will correspond to self and others
   if (gon.snippets){
     $.ajax({
       type: 'GET',
@@ -13,7 +39,7 @@ $(document).ready(function() {
       data: {data: {user_id: gon.user_id, speech_id: gon.speech_id}}
     })
   } else {
-    //need to refactor later when there is more time
+    //need to refactor later when there is more time - also this is duplicated
     $("#quick-access-toggle-box").append("<div class='row'><div class='col-lg-12 col-md-12 col-sm-12'><button id='add-highlights-button' type='button' class='btn btn-default btn-mini btn-block'>Add Highlights</button></div></div>")
   }
 
@@ -26,6 +52,14 @@ $(document).ready(function() {
     });
   });
 
+  $(document).on("click", "#delete-highlights-button", function(){
+    console.log("clicked delete-highlights-button");
+    $.ajax({
+      type: 'DELETE',
+      url: "/highlights/" + gon.highlight_id,
+      data: {data: {speech_id: gon.speech_id}}
+    });
+  });
 
   $("#content-div p").on('mouseup', function(){
     console.log("clicked content div p", this);
@@ -36,7 +70,6 @@ $(document).ready(function() {
       data: {data: {snippets: `[${result.start},${result.end}]`, speech_id: gon.speech_id}}
     });
   })
-
 
   function getSelectionCharOffsetsWithin(element) {
     var start = 0, end = 0;
@@ -62,18 +95,14 @@ $(document).ready(function() {
       end: end
     };
   }
-
-
-
-  $("#delete-highlights-button").click(function(event){
-    var url = window.location.href
-    var speechId = url.substring(url.lastIndexOf("/") + 1, url.length);
-    $.ajax({
-      type: 'DELETE',
-      url: "/highlights/" + gon.highlight_id,
-      data: {data: {speech_id: speechId}}
-    });
-  });
-
-
 })
+
+
+
+  // var ready;
+  // ready = (function() {
+  //
+  // }
+  //
+  // $(document).ready(ready);
+  // $(document).on('page:load', ready);

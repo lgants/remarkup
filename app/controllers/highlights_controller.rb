@@ -84,7 +84,6 @@ class HighlightsController < ApplicationController
     user_id = current_user.id
     snippets = JSON.parse(params[:data][:snippets])
 
-
     highlight = Highlight.find_by(user_id: user_id, speech_id: speech_id)
     highlight.update(snippets: JSON.parse(highlight.snippets).push(snippets))
 
@@ -100,11 +99,15 @@ class HighlightsController < ApplicationController
   # DELETE /highlights/1
   # DELETE /highlights/1.json
   def destroy
-    @highlight = Highlight.find(params[:id])
-    @highlight.destroy
+    speech_id = params[:data][:speech_id].to_i
+    highlight_id = params[:id].to_i
+    user_id = current_user.id
+
+    Highlight.find_by(speech_id: speech_id, user_id: user_id).destroy
+    @speech = Speech.find(speech_id)
+
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Highlight was successfully destroyed.' }
-      format.json { head :no_content }
+      format.js {}
     end
   end
 
