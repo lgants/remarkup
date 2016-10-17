@@ -64,9 +64,20 @@ myself = User.create(
     10.times do
       Highlight.create(
         user_id: user.id,
-        speech_id: rand(1..50),
-        snippets: "[[10,20]]"
+        speech_id: rand(2..50),
+        snippets: "[[#{rand(1..20)},#{rand(30..90)}]]"
       )
     end
   end
+end
+
+
+temp_id = 1
+50.times do
+  Highlight.create(
+    user_id: temp_id,
+    speech_id: 1,
+    snippets: "[[#{rand(1..20)},#{rand(30..50)}]]"
+  )
+  temp_id += 1
 end

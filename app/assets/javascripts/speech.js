@@ -43,7 +43,7 @@ $(document).ready(function() {
     $("#quick-access-toggle-box").append("<div class='row'><div class='col-lg-12 col-md-12 col-sm-12'><button id='add-highlights-button' type='button' class='btn btn-default btn-mini btn-block'>Add Highlights</button></div></div>")
   }
 
-  $('#add-highlights-button').on('click', function(e){
+  $(document).on("click", "#add-highlights-button", function(e){
     console.log("clicked add-highlights-button");
     $.ajax({
       type: 'POST',
@@ -64,7 +64,7 @@ $(document).ready(function() {
 
 
   //check box to retreive highlights and change check - incomplete
-  //need to add user_id attribute with in on each row in order to retrieve 
+  //need to add user_id attribute with in on each row in order to retrieve
   // $(document).on("click", "#check-user-button", function(){
   //   console.log("clicked check-user-button");
   //   $.each($(".sidebar_user_box_instance .check"), function(){
