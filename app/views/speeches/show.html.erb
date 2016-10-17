@@ -5,56 +5,10 @@
 </div>
 
 
+
+
 <script>
 
 
-
-
-var ready;
-ready = (function() {
-
-  // $('#plus-button').prop('disabled', true);
-  $( "#user-search-input" ).autocomplete({
-    minLength: 1,
-    source: function(request, response) {
-      $.getJSON(
-        "/users/autocomplete.json",
-        { term:request.term, speech_id: gon.speech_id },
-        function(data) {
-          response(data);
-        }
-      );
-    },
-    focus: function( event, object) {
-      $( "#user-search-input" ).val( object.item.user_full_name );
-      return false;
-    },
-    select: function( event, object ) {
-      //update to make an ajax request
-      // sidebarUsers.push({
-      //   userFullName: object.item.user_full_name,
-      //   userHighlights: object.item.highlights,
-      //   highlightColor: "red",
-      //   speechId: gon.speech_id,
-      //   show: false,
-      //   numTracker: tracker++
-      // });
-        $.ajax({
-          type: 'GET',
-          url: '/highlights/' + 100000000000,
-          data: {data: {user_id: object.item.user_id, speech_id: object.item.speech_id}}
-        });
-        event.preventDefault();
-      return false;
-    }
-  }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-    return $( "<li>" )
-      .append( "<div>" + item.user_full_name + "</div>" )
-      .appendTo( ul );
-  };
-} );
-
-$(document).ready(ready);
-$(document).on('page:load', ready);
 
 </script>

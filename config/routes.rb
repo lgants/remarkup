@@ -7,10 +7,6 @@ Rails.application.routes.draw do
 
   root "speeches#index"
 
-  # need to refactor
-  get "/load_selection_route", to: "highlights#load_selection"
-
-
   resources :users do
     collection do
       get 'autocomplete'

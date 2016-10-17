@@ -1,0 +1,15 @@
+var speechContent = <%= @speech.content.to_json.html_safe %>
+
+
+
+//current user toggle box removed before proceeding
+$("#current-user-toggle-box").children().remove()
+//add highlights button is added back to screen
+//need to refactor later when there is more time - also this is duplicated
+$("#quick-access-toggle-box").append("<div class='row'><div class='col-lg-12 col-md-12 col-sm-12'><button id='add-highlights-button' type='button' class='btn btn-default btn-mini btn-block'>Add Highlights</button></div></div>")
+
+//still need to add functionality to add back the user toggle box on click of add 
+
+
+
+$("#main-record-index").html(speechContent);
