@@ -67,12 +67,15 @@ class HighlightsController < ApplicationController
     user_id = current_user.id
     snippets = JSON.parse(params[:data][:snippets])
 
+
     highlight = Highlight.find_by(user_id: user_id, speech_id: speech_id)
     highlight.update(snippets: JSON.parse(highlight.snippets).push(snippets))
+
 
     @highlights = highlight
     @speech = Speech.find(speech_id)
     @user = current_user
+
 
     respond_to do |format|
       format.js {}
