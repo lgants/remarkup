@@ -36,7 +36,6 @@ window.colorizedContent = function(color, snippets, uncolorizedSpeechContent){
   var newHTML = "";
   prevIndex = 0;
   snippets.sort().forEach(function(item){
-    debugger 
     newHTML += uncolorizedSpeechContent.substring(prevIndex, item[0]);
     newHTML += '<span style="background-color:' + color + '">' + uncolorizedSpeechContent.substring(item[0], item[1]) + '</span>';
     prevIndex = item[1];
