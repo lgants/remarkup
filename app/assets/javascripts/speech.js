@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
   $( "#user-search-input" ).autocomplete({
-    minLength: 1,
+    minLength: 0,
     source: function(request, response) {
       $.getJSON(
         "/users/autocomplete.json",

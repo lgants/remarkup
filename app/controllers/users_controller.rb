@@ -4,8 +4,16 @@ class UsersController < ApplicationController
   # validate :last_name, :presence => true
 
     def autocomplete
-      @users = User.order(:first_name).where("first_name LIKE ? OR last_name LIKE ?", "%#{params[:term]}%", "%#{params[:term]}%")
-      @speech = Speech.find(params[:speech_id].to_f)
+      speech_id = JSON.parse(params[:speech_id])
+
+
+      Highlight.where(speech_id: speech_id)
+      # @users = User.joins(:highlights).where("highlights.speech_id = #{speech_id}").where("first_name ILIKE ? OR last_name ILIKE ?", "%#{params[:term]}%", "%#{params[:term]}%")
+
+      @users = User.order(:first_name).where("first_name ILIKE ? OR last_name ILIKE ?", "%#{params[:term]}%", "%#{params[:term]}%")
+      @speech = Speech.find(speech_id)
+
+
       respond_to do |format|
         format.html
         format.json {
