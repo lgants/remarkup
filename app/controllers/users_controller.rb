@@ -8,9 +8,7 @@ class UsersController < ApplicationController
 
 
       Highlight.where(speech_id: speech_id)
-      # @users = User.joins(:highlights).where("highlights.speech_id = #{speech_id}").where("first_name ILIKE ? OR last_name ILIKE ?", "%#{params[:term]}%", "%#{params[:term]}%")
-
-      @users = User.order(:first_name).where("first_name ILIKE ? OR last_name ILIKE ?", "%#{params[:term]}%", "%#{params[:term]}%")
+      @users = User.joins(:highlights).where("highlights.speech_id = #{speech_id}").where("first_name ILIKE ? OR last_name ILIKE ?", "%#{params[:term]}%", "%#{params[:term]}%")
       @speech = Speech.find(speech_id)
 
 
@@ -18,10 +16,7 @@ class UsersController < ApplicationController
         format.html
         format.json {
           render json: @users.map{ |user|
-            Hash[ [ [:user_full_name, user.first_name + " " + user.last_name], [:speech_id, @speech.id], [:user_id, user.id] ] ]
-            # Hash[ [ [:user_full_name, user.first_name + " " + user.last_name], [:highlights, Highlight.find_by(user_id: user.id, speech_id: @speech.id).snippets], [:user_id, user.id] ] ]
-          }.to_json
-          # render json: @users.map{|user| user.first_name + " " + user.last_name + " " + Highlight.find_by(user_id: user.id, speech_id: @speech.id).snippets}.to_json
+            Hash[ [ [:user_full_name, user.first_name + " " + user.last_name], [:speech_id, @speech.id], [:user_id, user.id] ] ] }.to_json
           }
       end
     end
