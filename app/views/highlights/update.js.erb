@@ -30,8 +30,12 @@ $("#current-user-toggle-box").append("<%= j render partial: 'layouts/sidebar_use
 });
 
 // actions to load highlights
-$("#main-record-index").html(colorizedContent(colorObj.colorCode, snippets, speechContent));
+$("#content-div > p").html(colorizedContent(colorObj.colorCode, snippets, speechContent));
   // $("#main-record-index").html(colorizedContent(colorObj.colorCode, snippets, speechContent));
   // $("#content-div > p").html(colorizedContent(colorObj.colorCode, snippets, speechContent)).ready(function(){
   // $("#main-record-index").attr('id', "main-record-index-color-" + colorObj.refVal);
   // });
+
+  $.each($("#content-div > p"), function(){
+    $(this).attr('id', "text-selection-color-" + colorObj.refVal);
+  });

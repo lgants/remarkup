@@ -24,46 +24,49 @@
 
 
 
+// #text-selection-color-0::selection {
+//   background: rgb(255, 243, 133); /* WebKit/Blink Browsers */
+// }
 
-#main-record-index-color-0::selection {
+#text-selection-color-0::selection {
   background: rgb(255, 243, 133); /* WebKit/Blink Browsers */
 }
-#main-record-index-color-0::-moz-selection {
+#text-selection-color-0::-moz-selection {
   background: rgb(255, 243, 133); /* Gecko Browsers */
 }
 
-#main-record-index-color-1::selection {
+#text-selection-color-1::selection {
   background: rgb(255, 214, 133); /* WebKit/Blink Browsers */
 }
-#main-record-index-color-1::-moz-selection {
+#text-selection-color-1::-moz-selection {
   background: rgb(255, 214, 133); /* Gecko Browsers */
 }
 
-#main-record-index-color-2::selection {
+#text-selection-color-2::selection {
   background: rgb(255, 133, 168); /* WebKit/Blink Browsers */
 }
-#main-record-index-color-2::-moz-selection {
+#text-selection-color-2::-moz-selection {
   background: rgb(255, 133, 168); /* Gecko Browsers */
 }
 
-#main-record-index-color-3::selection {
+#text-selection-color-3::selection {
   background: rgb(133, 255, 208); /* WebKit/Blink Browsers */
 }
-#main-record-index-color-3::-moz-selection {
+#text-selection-color-3::-moz-selection {
   background: rgb(133, 255, 208); /* Gecko Browsers */
 }
 
-#main-record-index-color-4::selection {
+#text-selection-color-4::selection {
   background: rgb(133, 194, 255); /* WebKit/Blink Browsers */
 }
-#main-record-index-color-4::-moz-selection {
+#text-selection-color-4::-moz-selection {
   background: rgb(133, 194, 255); /* Gecko Browsers */
 }
 
-#main-record-index-color-5::selection {
+#text-selection-color-5::selection {
   background: rgb(255, 133, 243); /* WebKit/Blink Browsers */
 }
-#main-record-index-color-5::-moz-selection {
+#text-selection-color-5::-moz-selection {
   background: rgb(255, 133, 243); /* Gecko Browsers */
 }
 

@@ -11,7 +11,6 @@ var speechContent = <%= @speech.content.to_json.html_safe %>
 var current_user_id = <%= @user.id.to_json.html_safe %>
 var speechId = <%= @speech.id.to_json.html_safe %>
 
-var colorObj = colorSelector(colorOptionsTracker, colorOptions)
 
 
 
@@ -26,13 +25,12 @@ $.each($(".sidebar_user_box_instance .check"), function(){
 
 
 //checks if selected users toggle box already exists
-
 if ($("#selected-users-toggle-box").children().length > 0){
-  debugger
   //if so, color tracker is incremented before proceeding
   incrementColorTracker(colorOptionsTracker)
   var colorObj = colorSelector(colorOptionsTracker, colorOptions)
-  debugger
+} else {
+  var colorObj = colorSelector(colorOptionsTracker, colorOptions)
 }
 
 //checks if current user toggle box already exists
@@ -51,8 +49,16 @@ $("#current-user-toggle-box").append("<%= j render partial: 'layouts/sidebar_use
   $(jquery_string_paint).find(".paint-brush").last().css('background-color', colorObj.colorCode);
   $(jquery_string_paint).find(".paint-brush").last().attr('id', "color_" + colorObj.refVal);
 
+  //isn't necessary to run this on the create action
+  $("#content-div > p").html(colorizedContent(colorObj.colorCode, snippets, speechContent));
+
+
+  $.each($("#content-div > p"), function(){
+    debugger
+    $(this).attr('id', "text-selection-color-" + colorObj.refVal);
+  });
+
   debugger
-  $("#main-record-index").html(colorizedContent(colorObj.colorCode, snippets, speechContent));
   // $("#content-div > p").html(colorizedContent(colorObj.colorCode, snippets, speechContent));
   // $("#main-record-index").attr('id', "main-record-index-color-" + colorObj.refVal);
 });

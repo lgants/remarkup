@@ -58,7 +58,7 @@ if (current_user_id == selected_user_id){
 
 
     //actions to load highlights
-    $("#main-record-index").html(colorizedContent(colorObj.colorCode, snippets, speechContent));
+    $("#content-div > p").html(colorizedContent(colorObj.colorCode, snippets, speechContent));
     // $("#content-div > p").html(colorizedContent(colorObj.colorCode, snippets, speechContent));
     // $("#main-record-index").attr('id', "main-record-index-color-" + colorObj.refVal);
   });
