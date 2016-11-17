@@ -4,7 +4,6 @@ class Highlight < ApplicationRecord
 
 
 
-
   # def check_duplicates(new_snippets)
   # end
 

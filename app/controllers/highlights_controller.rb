@@ -1,5 +1,8 @@
 class HighlightsController < ApplicationController
-  # before_action :set_highlight, only: [:edit, :update]
+  before_action :set_user, only: [:show]
+  before_action :set_speech, only: [:show]
+  before_action :set_highlight, only: [:show]
+  # before_action :find, only: [:show, :create, :update, :destroy]
   # before action check_highlight used to check whether highlight alread exists
 
 
@@ -12,15 +15,14 @@ class HighlightsController < ApplicationController
   # GET /highlights/1
   # GET /highlights/1.json
   def show
-    speech_id = params[:data][:speech_id].to_i
-    user_id = params[:data][:user_id].to_i
+    binding.pry
+    # highlights = Highlight.find_by(user_id: @user_id, speech_id: @speech_id)
+    #
+    # @highlights = highlights
+    # @speech = Speech.find(speech_id)
+    # @user = User.find(user_id)
+    # @current_user = current_user
 
-    highlights = Highlight.find_by(user_id: user_id, speech_id: speech_id)
-
-    @highlights = highlights
-    @speech = Speech.find(speech_id)
-    @user = User.find(user_id)
-    @current_user = current_user
 
     respond_to do |format|
       format.js {}
@@ -100,8 +102,24 @@ class HighlightsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    # def set_highlight
+    #   @highlight = Highlight.find_by(speech_id: params[:data][:speech_id], user_id: current_user.id)
+    # end
+
+    def set_user
+      #note the use of a default value since user might
+      @user_id = params[:data][:user_id].to_i ||= current_user.id
+      @user = User.find(@user_id)
+    end
+
+    def set_speech
+      @speech_id = params[:data][:speech_id].to_i
+      @speech = Speech.find(@speech_id)
+    end
+
     def set_highlight
-      @highlight = Highlight.find_by(speech_id: params[:data][:speech_id], user_id: current_user.id)
+      # @highlight = JSON.parse(params[:data][:snippets])
+      @highlights = Highlight.find_by(user_id: @user_id, speech_id: @speech_id)
     end
 
     # def check_highlight
