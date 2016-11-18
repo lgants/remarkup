@@ -1,6 +1,6 @@
 
 
-var snippets = <%= JSON.parse(@highlights.snippets) %>
+var snippets = <%= JSON.parse(@highlight.snippets) %>
 var speechContent = <%= @speech.content.to_json.html_safe %>
 var current_user_id = <%= @current_user.id.to_json.html_safe %>
 
