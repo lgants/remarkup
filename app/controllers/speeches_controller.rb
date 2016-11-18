@@ -12,13 +12,17 @@ class SpeechesController < ApplicationController
   # GET /speeches/1
   # GET /speeches/1.json
   def show
+
+    #violates DRY
     gon.speech_id = @speech.id
+    gon.speech = @speech
     gon.user_id = User.find(current_user.id).id
+
     #markup_li is used to show the markup panel
     @markup_li = true
     # code below searches if the user has an existing highlight
     # Highlight.find_by(user_id: @current_user.id, speech_id: @speech.id)
-    if highlight = Highlight.find_by(speech_id: @speech.id, user_id: current_user.id)
+    if highlight = Highlight.find_by(speech_id: @speech.id, user_id: User.find(current_user.id).id)
       gon.highlight_id = highlight.id
       gon.snippets = highlight.snippets
     end
@@ -81,6 +85,12 @@ class SpeechesController < ApplicationController
     def set_speech
       @speech = Speech.find(params[:id])
     end
+
+    # def set_user
+    #   #note the use of a default value since user might
+    #   @selected_user = params[:data][:user_id].to_i
+    #   @current_user = current_user
+    # end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def speech_params

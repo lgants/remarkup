@@ -1,8 +1,8 @@
-
-var snippets = <%= @highlights.snippets %>
+var snippets = <%= @highlight.snippets %>
 var speechContent = <%= @speech.content.to_json.html_safe %>
-var current_user_id = <%= @current_user.id.to_json.html_safe %>
-var selected_user_id = <%= @user.id.to_json.html_safe %>
+var current_user_id = <%= current_user.id.to_json.html_safe %>
+var selected_user_id = <%= @selected_user.id.to_json.html_safe %>
+
 
 
 // sets the background of all toggle boxes to unchecked

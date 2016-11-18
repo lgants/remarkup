@@ -7,7 +7,7 @@ var highlight_id = <%= @highlights.id %>
 
 var snippets = <%= JSON.parse(@highlights.snippets) %>
 var speechContent = <%= @speech.content.to_json.html_safe %>
-var current_user_id = <%= @user.id.to_json.html_safe %>
+var current_user_id = <%= @current_user.id.to_json.html_safe %>
 var speechId = <%= @speech.id.to_json.html_safe %>
 
 
@@ -53,11 +53,9 @@ $("#current-user-toggle-box").append("<%= j render partial: 'layouts/sidebar_use
 
 
   $.each($("#content-div > p"), function(){
-    debugger
     $(this).attr('id', "text-selection-color-" + colorObj.refVal);
   });
 
-  debugger
   // $("#content-div > p").html(colorizedContent(colorObj.colorCode, snippets, speechContent));
   // $("#main-record-index").attr('id', "main-record-index-color-" + colorObj.refVal);
 });

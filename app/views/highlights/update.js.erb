@@ -2,7 +2,7 @@
 
 var snippets = <%= JSON.parse(@highlights.snippets) %>
 var speechContent = <%= @speech.content.to_json.html_safe %>
-var current_user_id = <%= @user.id.to_json.html_safe %>
+var current_user_id = <%= @current_user.id.to_json.html_safe %>
 
 
 // sets the background of all toggle boxes to unchecked

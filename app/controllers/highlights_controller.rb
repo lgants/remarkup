@@ -15,14 +15,12 @@ class HighlightsController < ApplicationController
   # GET /highlights/1
   # GET /highlights/1.json
   def show
-    binding.pry
     # highlights = Highlight.find_by(user_id: @user_id, speech_id: @speech_id)
-    #
+
     # @highlights = highlights
     # @speech = Speech.find(speech_id)
     # @user = User.find(user_id)
     # @current_user = current_user
-
 
     respond_to do |format|
       format.js {}
@@ -55,7 +53,8 @@ class HighlightsController < ApplicationController
 
     @highlights = highlights
     @speech = Speech.find(speech_id)
-    @user = current_user
+    @selected_user = current_user
+
 
     respond_to do |format|
       format.js {}
@@ -73,9 +72,11 @@ class HighlightsController < ApplicationController
 
     highlight.update(snippets: JSON.parse(highlight.snippets).push(snippets).sort {|a,b| a[1] <=> b[1]})
 
+
+
     @highlights = highlight
     @speech = Speech.find(speech_id)
-    @user = current_user
+    @selected_user = current_user
 
 
     respond_to do |format|
@@ -108,8 +109,8 @@ class HighlightsController < ApplicationController
 
     def set_user
       #note the use of a default value since user might
-      @user_id = params[:data][:user_id].to_i ||= current_user.id
-      @user = User.find(@user_id)
+      @selected_user_id = params[:data][:user_id].to_i
+      @selected_user = User.find(@selected_user_id)
     end
 
     def set_speech
@@ -119,7 +120,8 @@ class HighlightsController < ApplicationController
 
     def set_highlight
       # @highlight = JSON.parse(params[:data][:snippets])
-      @highlights = Highlight.find_by(user_id: @user_id, speech_id: @speech_id)
+      # @snippet = JSON.parse(params[:data][:snippets])
+      @highlight = Highlight.find_by(user_id: @selected_user_id, speech_id: @speech_id)
     end
 
     # def check_highlight

@@ -1,10 +1,11 @@
-<div class="sidebar_user_box_instance" id="user_<%= user.id %>">
+
+<div class="sidebar_user_box_instance" id="user_<%= @selected_user.id %>">
   <div class="row">
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <%= user.first_name %>
+      <%= @selected_user.first_name %>
     </div>
     <div class="col-lg-5 col-md-5 col-sm-5 text-right nopadding-left">
-      <% if user.id == current_user.id %>
+      <% if @selected_user.id == current_user.id %>
       <button type="button" id="delete-highlights-button" class="btn btn-default btn-mini trash" style="width:2em"><center><i class="fa fa-trash" aria-hidden="true"></i></center></button>
       <% end  %>
       <button type="button" class="btn btn-default btn-mini color-palette paint-brush" style="width:2em"><i class="fa fa-paint-brush" aria-hidden="true"></i></button>
