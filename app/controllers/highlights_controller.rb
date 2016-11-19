@@ -9,6 +9,7 @@ class HighlightsController < ApplicationController
   # GET /highlights/1
   # GET /highlights/1.json
   def show
+
     respond_to do |format|
       format.js {}
     end
@@ -18,7 +19,6 @@ class HighlightsController < ApplicationController
   # POST /highlights.json
   def create
     #the current user will always be the same when coming from this
-
     speech_id = params[:data][:speech_id].to_i
     user_id = current_user.id
     snippets = JSON.parse(params[:data][:snippets])
@@ -68,13 +68,7 @@ class HighlightsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    # def set_highlight
-    #   @highlight = Highlight.find_by(speech_id: params[:data][:speech_id], user_id: current_user.id)
-    # end
-
     def set_user
-      #note the use of a default value
-      # calling to_i on nil, results in 0, so ||= operator won't work as desired
       if params[:data][:user_id].nil?
         @selected_user_id = current_user.id
         @selected_user = current_user
@@ -91,7 +85,6 @@ class HighlightsController < ApplicationController
     end
 
     def set_highlight
-      # highlight object
       @highlight = Highlight.find_by(user_id: @selected_user_id, speech_id: @speech_id)
     end
 
@@ -99,20 +92,9 @@ class HighlightsController < ApplicationController
       @snippet = JSON.parse(params[:data][:snippets])
     end
 
-    # def set_snippets
-    #   binding.pry
-    #   # current snippets in an nested array value (not string)
-    #   @cur_snippets = JSON.parse(@highlight.snippets) || []
-    #   # current snippets in an array value (not string)
-    #   @new_snippet = JSON.parse(params[:data][:snippets])
-    # end
-
-    # def check_highlight
-    #   @highlight = Highlight.find_by(user_id: current_user.id, speech_id: params[:data][:speech_id].to_i)
-    # end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def highlight_params
+      # params.require(:data).permit(:user_id, :speech_id, :snippets)
       params.require(:highlight).permit(:user_id, :speech_id, :snippets)
     end
 end

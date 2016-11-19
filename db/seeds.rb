@@ -51,7 +51,7 @@ myself = User.create(
       speech_date: "#{rand(1..12)}/#{rand(1..29)}/#{rand(2015..2016)}",
       venue: Faker::University.name,
       city: Faker::Address.city,
-      state: Faker::Address.state,
+      state: Faker::Address.state_abbr,
       first_name: Faker::Name.first_name,
       last_name: Faker::Name.last_name,
       # public_figure_id: ,
