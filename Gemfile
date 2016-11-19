@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-
+gem 'rspec-rails'
+gem 'capybara'
 #Use jquery UI Rails gem for search box with autocomplete text
 gem 'jquery-ui-rails'
 #Use gon to access Ruby variables in JS variables client-side
