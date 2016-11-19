@@ -6,10 +6,15 @@ class Highlight < ApplicationRecord
   Upon 'priming' the site to record highlights, an id is added to the div containing speech content; the id corresponds with a CSS pseduo class that applies selection coloration corresponding to the user's designated color
   So, the highlight appears instantaneously, but in reality an AJAX request is running in the background to send the new highlight indicies to the server and then sends them back down where the highlights are applied to speech content
   However, since highlights are the primary function of the site I attempted to optimize this code (for server performance if nothing else)
+
+  note that i put all the helper methods within the function, rather than concerns, because I can't see a scenario where they would be used elsewhere; additionally, there is a possibility of name collision
 =end
 
   def add_snippet(new_snippet)
-    old_snippets = JSON.parse(self.snippets)
+    # old_snippets = JSON.parse(self.snippets)
+    def old_snippets
+      JSON.parse(self.snippets)
+    end
 
     def merge_snippets(collection, n)
       collection.push(n)
