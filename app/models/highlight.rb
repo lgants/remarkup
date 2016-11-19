@@ -2,58 +2,33 @@ class Highlight < ApplicationRecord
   belongs_to :speech
   belongs_to :user
 
-  # def merge_overlapping_collection(collection)
-  #   def collection_overlap?(l, e)
-  #     e[0].between?(l.first, l.last) || e[1].between?(l.first, l.last)
-  #   end
-  #   def merge_overlaps(l, e)
-  #     [[l.first, e.first].min, [l.last, e.last].max]
-  #   end
-  #
-  #   collection.sort_by(&:first).inject([]) do |collection, element|
-  #     if !collection.empty? && collection_overlap?(collection.last, element)
-  #       new_element = merge_overlaps(collection.last, element)
-  #       new_element != collection.last ? collection.push(new_element) : collection
-  #     else
-  #       collection.push(element)
-  #     end
-  #   end
-  # end
+  def add_snippet(new_snippet)
+    old_snippets = JSON.parse(self.snippets)
 
-  def add_snippet(snippet)
-    snippets = JSON.parse(self.snippets)
-
-    def merge_collection(collection, element)
+    def merge_snippets(collection, element)
       collection.concat([element])
     end
 
     def merge_overlapping_collection(collection)
-      def collection_overlap?(l, e)
+      def snippets_overlap?(l, e)
         e[0].between?(l.first, l.last) || e[1].between?(l.first, l.last)
       end
 
-      def merge_overlaps(l, e)
+      def combine_snippets(l, e)
         [[l.first, e.first].min, [l.last, e.last].max]
       end
 
       collection.sort_by(&:first).inject([]) do |collection, element|
-        if !collection.empty? && collection_overlap?(collection.last, element)
-          new_element = merge_overlaps(collection.last, element)
-          new_element != collection.last ? collection.push(new_element) : collection
+        if !collection.empty? && snippets_overlap?(collection.last, element)
+          collection[0...-1].push(combine_snippets(collection.last, element))
         else
           collection.push(element)
         end
       end
     end
 
-    merged = merge_collection(snippets, snippet)
-    new_snippets = merge_overlapping_collection(merged)
+    new_snippets = merge_overlapping_collection(merge_snippets(old_snippets, new_snippet))
     self.update(snippets: new_snippets)
 
   end
-
-
-
-
-
 end

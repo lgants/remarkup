@@ -120,6 +120,7 @@ $(document).ready(function() {
       priorRange.setEnd(range.startContainer, range.startOffset);
       start = priorRange.toString().length;
       end = start + range.toString().length;
+      console.log(start, end)
     } else if (typeof document.selection != "undefined" &&
       (sel = document.selection).type != "Control") {
       range = sel.createRange();
@@ -128,8 +129,10 @@ $(document).ready(function() {
       priorRange.setEndPoint("EndToStart", range);
       start = priorRange.text.length;
       end = start + range.text.length;
+      console.log(start, end)
     }
     return {
+      // console.log(start, end)
       start: start,
       end: end
     };

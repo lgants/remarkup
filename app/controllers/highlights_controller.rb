@@ -44,44 +44,7 @@ class HighlightsController < ApplicationController
   # PATCH/PUT /highlights/1
   # PATCH/PUT /highlights/1.json
   def update
-
-    # def verify_indicie_order(e)
-    #   e[1] > e[0] ? [e[0],e[1]] : [e[1],e[0]]
-    # end
-    #
-    # # merge_cur_snippets_new_snippets
-    # def merge_collection(collection, element)
-    #   collection.concat(element)
-    # end
-    #
-    # def merge_overlapping_collection(collection)
-    #   def collection_overlap?(l, e)
-    #     binding.pry
-    #     e[0].between?(l.first, l.last) || e[1].between?(l.first, l.last)
-    #   end
-    #   def merge_overlaps(l, e)
-    #     [[l.first, e.first].min, [l.last, e.last].max]
-    #   end
-    #
-    #   collection.sort_by(&:first).inject([]) do |collection, element|
-    #     if !collection.empty? && collection_overlap?(collection.last, element)
-    #       new_element = merge_overlaps(collection.last, element)
-    #       new_element != collection.last ? collection.push(new_element) : collection
-    #     else
-    #       collection.push(element)
-    #     end
-    #   end
-    # end
-
-    # @snippets = JSON.parse(@highlight.snippets) || []
-    #
-    # @highlight.update(merge_overlapping_collection(merge_collection(@snippets, @snippet)))
-
     @highlight.add_snippet(@snippet)
-
-
-    # highlight.update(snippets: JSON.parse(highlight.snippets).push(@snippet).sort {|a,b| a[1] <=> b[1]})
-
 
     respond_to do |format|
       format.js {}
