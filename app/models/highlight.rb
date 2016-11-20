@@ -38,7 +38,8 @@ class Highlight < ApplicationRecord
         end
       end
     end
-
+    
     merge_overlapping_snippets(merge_snippets(old_snippets, new_snippet))
+
   end
 end
