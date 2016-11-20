@@ -44,8 +44,9 @@ class HighlightsController < ApplicationController
   # PATCH/PUT /highlights/1
   # PATCH/PUT /highlights/1.json
   def update
-    binding.pry 
-    @highlight.add_snippet(@snippet)
+    
+    new_snippets = @highlight.transform_snippets(@snippet)
+    @highlight.update(snippets: new_snippets)
 
     respond_to do |format|
       format.js {}

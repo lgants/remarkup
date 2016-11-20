@@ -10,7 +10,7 @@ class Highlight < ApplicationRecord
   note that i put all the helper methods within the function, rather than concerns, because I can't see a scenario where they would be used elsewhere; additionally, there is a possibility of name collision
 =end
 
-  def add_snippet(new_snippet)
+  def transform_snippets(new_snippet)
     # old_snippets = JSON.parse(self.snippets)
     def old_snippets
       JSON.parse(self.snippets)
@@ -39,7 +39,6 @@ class Highlight < ApplicationRecord
       end
     end
 
-    self.update(snippets: merge_overlapping_snippets(merge_snippets(old_snippets, new_snippet)))
-
+    merge_overlapping_snippets(merge_snippets(old_snippets, new_snippet))
   end
 end

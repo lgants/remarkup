@@ -4,27 +4,52 @@ require "rails_helper"
 describe Highlight, '.add_snippet' do
 
   before do
-    snippet_first = rand(10..20)
-    snippet_last = rand(30..40)
+    @index_first = rand(10..20)
+    @index_last = rand(30..40)
     @user = User.new(id: rand(10..20))
     # @speech = Speech.new(id: rand(10..20))
     @highlight_zero = Highlight.new(user_id: @user.id, snippets: "[]")
-    @highlight_one = Highlight.new(user_id: @user.id, snippets: "[[#{snippet_first},#{snippet_last}]]")
-    @snippet_collision_same = "[[#{snippet_first},#{snippet_last}]]"
-    @snippet_collision_greater = "[[#{snippet_first+1},#{snippet_last+1}]]"
-    @snippet_collision_less = "[[#{snippet_first-1},#{snippet_last-1}]]"
-    @snippet_collision_both_outside = "[[#{snippet_first-1},#{snippet_last+1}]]"
-    @snippet_collision_both_inside = "[[#{snippet_first+1},#{snippet_last-1}]]"
-    @snippet_greater = "[[#{snippet_last+1},#{snippet_last+2}]]"
-    @snippet_less = "[[#{snippet_first-2},#{snippet_first-1}]]"
+    @highlight_one = Highlight.new(user_id: @user.id, snippets: "[[#{@index_first},#{@index_last}]]")
+    @snippet_collision_same = "[[#{@index_first},#{@index_last}]]"
+    @snippet_collision_greater = "[[#{@index_first+1},#{@index_last+1}]]"
+    @snippet_collision_less = "[[#{@index_first-1},#{@index_last-1}]]"
+    @snippet_collision_both_outside = "[[#{@index_first-1},#{@index_last+1}]]"
+    @snippet_collision_both_inside = "[[#{@index_first+1},#{@index_last-1}]]"
+    @snippet_greater = "[[#{@index_last+1},#{@index_last+2}]]"
+    @snippet_less = "[[#{@index_first-2},#{@index_first-1}]]"
+    # @snippet_reversed = "[[#{@index_last},#{@index_first}]]"
   end
 
-  # still valid if snippet[0] > snippet[1]
+
+  context "updates highlight instance when" do
+    it "updates highlight string from Highlight instance" do
+    end
+
+    it "returns snippet string from Highlight instance" do
+    end
+
+    it "returns snippet string from Highlight instance" do
+    end
+
+    it "returns snippet string from Highlight instance" do
+    end
+  end
+
+
+
 
   context "tests for helper method #old_snippets" do
-    it "Highlight to snippets" do
-      @empty_snippets.snippets == "[]"
+    it "returns snippet string from Highlight instance" do
+      expect(@highlight_zero.snippets).to eq("[]")
+      expect(@highlight_one.snippets).to eq("[[#{@index_first},#{@index_last}]]")
     end
+
+    # it "returns array object value" do
+    #   expect(@highlight_zero.add_snippet([1,2]).old_snippets).to eq([])
+    #   expect(@highlight_one.add_snippet([1,2]).old_snippets).to eq([[index_first,index_last]])
+    # end
+
+
   end
 
   context "tests for helper method #merge_snippets" do
