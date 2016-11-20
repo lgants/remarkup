@@ -1,37 +1,52 @@
 require 'factory_girl_rails'
 require "rails_helper"
 
-describe Highlight, '.add_snippet' do
+describe Highlight, '.transform_snippets' do
 
   before do
-    @index_first = rand(10..20)
-    @index_last = rand(30..40)
-    @user = User.new(id: rand(10..20))
+    @a = 1
+    @b = 2
+    @c = 3
+    @d = 4
+    @e = 5
+    @index_last = 6
+    @f = 7
+    @g = 8
+
+    @user = User.new(id: 1)
     # @speech = Speech.new(id: rand(10..20))
     @highlight_zero = Highlight.new(user_id: @user.id, snippets: "[]")
     @highlight_one = Highlight.new(user_id: @user.id, snippets: "[[#{@index_first},#{@index_last}]]")
-    @snippet_collision_same = "[[#{@index_first},#{@index_last}]]"
-    @snippet_collision_greater = "[[#{@index_first+1},#{@index_last+1}]]"
-    @snippet_collision_less = "[[#{@index_first-1},#{@index_last-1}]]"
-    @snippet_collision_both_outside = "[[#{@index_first-1},#{@index_last+1}]]"
-    @snippet_collision_both_inside = "[[#{@index_first+1},#{@index_last-1}]]"
-    @snippet_greater = "[[#{@index_last+1},#{@index_last+2}]]"
-    @snippet_less = "[[#{@index_first-2},#{@index_first-1}]]"
+    @snippet_collision_same = "[#{@index_first},#{@index_last}]"
+    @snippet_collision_greater = "[#{@index_first+1},#{@index_last+1}]"
+    @snippet_collision_less = "[#{@index_first-1},#{@index_last-1}]"
+    @snippet_collision_both_outside = "[#{@index_first-1},#{@index_last+1}]"
+    @snippet_collision_both_inside = "[#{@index_first+1},#{@index_last-1}]"
+    @snippet_greater = "[#{@index_last+1},#{@index_last+2}]"
+    @snippet_less = "[#{@index_first-2},#{@index_first-1}]"
     # @snippet_reversed = "[[#{@index_last},#{@index_first}]]"
   end
 
 
-  context "updates highlight instance when" do
-    it "updates highlight string from Highlight instance" do
+  context "returns correctly transformed snippets when" do
+
+
+    it "new snippet indicie range intersects current snippet indicie range" do
+      #both
     end
 
-    it "returns snippet string from Highlight instance" do
+    it "new snippet indicie range encompasses current snippet indicie range" do
+      #both
     end
 
-    it "returns snippet string from Highlight instance" do
+    it "new snippet indicie range inside current snippet indicie range" do
+      #both
     end
 
-    it "returns snippet string from Highlight instance" do
+    it "new snippet indicie range outside current snippet indicie range" do
+      #greater than greater
+      expect(@highlight_one.transform_snippets(@snippet_less)).to eq([])
+      #less than current
     end
   end
 
