@@ -2,44 +2,33 @@ class Highlight < ApplicationRecord
   belongs_to :speech
   belongs_to :user
 
-=begin
-  Upon 'priming' the site to record highlights, an id is added to the div containing speech content; the id corresponds with a CSS pseduo class that applies selection coloration corresponding to the user's designated color
-  So, the highlight appears instantaneously, but in reality an AJAX request is running in the background to send the new highlight indicies to the server and then sends them back down where the highlights are applied to speech content
-  However, since highlights are the primary function of the site I attempted to optimize this code (for server performance if nothing else)
-
-  note that i put all the helper methods within the function, rather than concerns, because I can't see a scenario where they would be used elsewhere; additionally, there is a possibility of name collision
-=end
-
   def transform_snippets(new_snippet)
-    # old_snippets = JSON.parse(self.snippets)
     def old_snippets
       JSON.parse(self.snippets)
     end
-
-    def merge_snippets(collection, n)
-      collection.push(n)
+    def sort_indices(n)
+      n[1] > n[0] ? n : [n[1], n[0]]
+    end
+    def merge_snippets(arr, n)
+      arr.push(n)
     end
 
-    def merge_overlapping_snippets(collection)
-      #note: I placed helper methods inside method because I don't forsee them being needed for other purposes and thought it was more legible
+    def merge_overlapping_snippets(arr)
       def snippets_overlap?(l, n)
-        n[0].between?(l.first, l.last) || n[1].between?(l.first, l.last)
+        n[0].between?(l[0], l[1]) || n[1].between?(l[0], l[1])
       end
-
       def combine_snippets(l, n)
-        [[l.first, n.first].min, [l.last, n.last].max]
+        [[l[0], n[0]].min, [l[1], n[1]].max]
       end
-
-      collection.sort_by(&:first).inject([]) do |result, snippet|
-        if !result.empty? && snippets_overlap?(result.last, snippet)
-          result[0...-1].push(combine_snippets(result.last, snippet))
+      arr.sort_by(&:first).inject([]) do |result, snippet|
+        if !result.empty? && snippets_overlap?(result[-1], snippet)
+          result[0...-1].push(combine_snippets(result[-1], snippet))
         else
           result.push(snippet)
         end
       end
     end
-    
-    merge_overlapping_snippets(merge_snippets(old_snippets, new_snippet))
 
+    merge_overlapping_snippets(merge_snippets(old_snippets, sort_indices(new_snippet)))
   end
 end
