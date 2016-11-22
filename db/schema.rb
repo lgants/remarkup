@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160919173300) do
+ActiveRecord::Schema.define(version: 20161122065736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,13 +67,17 @@ ActiveRecord::Schema.define(version: 20160919173300) do
     t.string   "password_digest"
     t.text     "biography"
     t.string   "default_color"
-    t.boolean  "public_figure",   default: false
-    t.boolean  "entity",          default: false
-    t.boolean  "moderator",       default: false
-    t.boolean  "admin",           default: false
-    t.boolean  "banned",          default: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.boolean  "public_figure",       default: false
+    t.boolean  "entity",              default: false
+    t.boolean  "moderator",           default: false
+    t.boolean  "admin",               default: false
+    t.boolean  "banned",              default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
 end

@@ -23,10 +23,6 @@
 
 <% end %>
 
-<%= will_paginate @speeches %>
-
   <% @speeches.reverse_each do |speech| %>
     <%= render partial: 'speech_partial', locals: { speech: speech } %>
   <% end %>
-
-<%= will_paginate @speeches %>

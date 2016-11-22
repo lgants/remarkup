@@ -4,8 +4,8 @@ class SpeechesController < ApplicationController
   # GET /speeches
   # GET /speeches.json
   def index
-    @speeches = Speech.all.paginate(page: params[:page], per_page: 10)
-    # @speeches = Speech.all
+    @speeches = Speech.all
+    # @speeches = Speech.all.paginate(page: params[:page], per_page: 10)
     # filter_li used to show filter options
     @search_lis = true
   end
@@ -17,17 +17,20 @@ class SpeechesController < ApplicationController
     #violates DRY
     gon.speech_id = @speech.id
     gon.speech = @speech
-    gon.user_id = User.find(current_user.id).id
+    if current_user
+      gon.user_id = User.find(current_user.id).id
+      # code below searches if the user has an existing highlight
+      # Highlight.find_by(user_id: @current_user.id, speech_id: @speech.id)
+      if highlight = Highlight.find_by(speech_id: @speech.id, user_id: User.find(current_user.id).id)
+        gon.highlight_id = highlight.id
+        gon.snippets = highlight.snippets
+      end
+
+    end
+
 
     #markup_li is used to show the markup panel
     @markup_li = true
-    # code below searches if the user has an existing highlight
-    # Highlight.find_by(user_id: @current_user.id, speech_id: @speech.id)
-    if highlight = Highlight.find_by(speech_id: @speech.id, user_id: User.find(current_user.id).id)
-      gon.highlight_id = highlight.id
-      gon.snippets = highlight.snippets
-    end
-
   end
 
   # GET /speeches/new

@@ -1,3 +1,5 @@
+<br>
+<br>
 <div class="panel panel-default">
   <div class="panel-body">
     <%= form_for(user) do |f| %>
@@ -15,12 +17,13 @@
       <form>
         <div class="row">
           <div class="col-sm-6 col-md-4" style="float:none; margin-left:auto; margin-right:auto">
-            <!-- <div class="thumbnail"> -->
-              <img style="max-width:200px; max-height:200px" src="/assets/default-profile.png" alt="...">
-              <div class="caption" style="margin:10px 0px">
-                  <input type="file" style="max-width:200px" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+            <div class="thumbnail" style="text-align: center">
+              <div id="target">
+                <img style="max-width:200px; max-height:200px" src="/assets/default-profile.png" alt="...">
               </div>
-            <!-- </div> -->
+              <label>Select Profile Image</label>
+              <%= f.file_field :avatar, type: "file", id: "pictureInput", class: "form-control-file" %>
+            </div>
           </div>
         </div><!-- thumbnail-image -->
         <div class="form-group">

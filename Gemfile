@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-
+# Use paperclip gem to support image manipulation
+gem 'paperclip', '~> 4.1'
 # Use will_paginate gem to support load more button
 gem 'will_paginate', '~> 3.1.0'
 # Use jquery UI Rails gem for search box with autocomplete text
