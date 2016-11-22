@@ -7,7 +7,7 @@ class Highlight < ApplicationRecord
       JSON.parse(self.snippets)
     end
     def sort_indices(n)
-      n[1] > n[0] ? n : [n[1], n[0]]
+      n[1] >= n[0] ? n : [n[1], n[0]]
     end
     def merge_snippets(arr, n)
       arr.push(n)

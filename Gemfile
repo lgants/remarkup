@@ -1,13 +1,16 @@
 source 'https://rubygems.org'
 
-#Use jquery UI Rails gem for search box with autocomplete text
+
+# Use will_paginate gem to support load more button
+gem 'will_paginate', '~> 3.1.0'
+# Use jquery UI Rails gem for search box with autocomplete text
 gem 'jquery-ui-rails'
-#Use gon to access Ruby variables in JS variables client-side
+# Use gon to access Ruby variables in JS variables client-side
 gem 'gon', '~> 6.0', '>= 6.0.1'
 gem 'bootstrap-sass'
 gem 'sass-rails'
 gem 'foundation-icons-sass', '~> 1.0', '>= 1.0.3'
-#Use faker to genererate seed data
+# Use faker to genererate seed data
 gem 'faker', '~> 1.6.6'
 # Use rename to rename the app name
 gem 'rename'

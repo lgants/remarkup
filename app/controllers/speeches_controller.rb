@@ -4,7 +4,8 @@ class SpeechesController < ApplicationController
   # GET /speeches
   # GET /speeches.json
   def index
-    @speeches = Speech.all
+    @speeches = Speech.all.paginate(page: params[:page], per_page: 10)
+    # @speeches = Speech.all
     # filter_li used to show filter options
     @search_lis = true
   end
