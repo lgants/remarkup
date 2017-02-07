@@ -12,8 +12,10 @@ module ApplicationHelper
 
   def flash_messages(opts = {})
     flash.each do |msg_type, message|
-      concat(content_tag(:div, message, class: "alert #{bootstrap_class_for(msg_type)} fade in") do
-        concat content_tag(:button, 'x', class: "close", data: { dismiss: 'alert' })
+      concat(content_tag(:div, message, class: "alert #{bootstrap_class_for(msg_type)} alert-dismissible", role: 'alert') do
+        concat(content_tag(:button, class: 'close', data: { dismiss: 'alert' }) do
+          concat content_tag(:i, '', class:'fa fa-times', 'aria-hidden' => true)
+        end)
         concat message
       end)
     end

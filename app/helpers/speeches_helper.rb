@@ -1,4 +1,17 @@
 module SpeechesHelper
+  def flash_errors(opts = {})
+    concat(content_tag(:div, class: "alert alert-danger", role: 'alert-danger') do
+      concat(content_tag(:h4, "#{pluralize(opts.count,'error')} prohibited this form from being saved", style: "float:left"))
+      concat(content_tag(:button, class: 'close', data: { dismiss: 'alert' }, style: "float:right") do
+        concat content_tag(:i, '', class:'fa fa-times', 'aria-hidden' => true)
+      end)
+      opts.messages.map do |msg_type, message|
+        concat(content_tag(:div, "#{msg_type.to_s.capitalize} #{message.first}", style: "clear:both"))
+      end
+    end)
+    nil
+  end
+
 
   def us_states
     [

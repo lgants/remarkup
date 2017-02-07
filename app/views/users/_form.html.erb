@@ -2,8 +2,17 @@
 <br>
 <div class="panel panel-default">
   <div class="panel-body">
+
     <%= form_for(user) do |f| %>
       <% if user.errors.any? %>
+        <% flash_errors(user.errors) %>
+      <% end %>
+    
+
+
+
+
+      <!-- <% if user.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
           <ul>
@@ -12,7 +21,9 @@
           <% end %>
           </ul>
         </div>
-      <% end %>
+      <% end %> -->
+
+
       <form>
         <div class="row">
           <div class="col-sm-6 col-md-4" style="float:none; margin-left:auto; margin-right:auto">
