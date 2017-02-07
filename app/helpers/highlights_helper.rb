@@ -1,4 +1,2 @@
 module HighlightsHelper
-
-
 end

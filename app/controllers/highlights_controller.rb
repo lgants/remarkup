@@ -3,13 +3,10 @@ class HighlightsController < ApplicationController
   before_action :set_speech, only: [:show, :destroy, :update]
   before_action :set_highlight, only: [:show, :update]
   before_action :set_snippet, only: [:update]
-  # before_action :find, only: [:show, :create, :update, :destroy]
-  # before action check_highlight used to check whether highlight alread exists
 
   # GET /highlights/1
   # GET /highlights/1.json
   def show
-
     respond_to do |format|
       format.js {}
     end
@@ -44,7 +41,7 @@ class HighlightsController < ApplicationController
   # PATCH/PUT /highlights/1
   # PATCH/PUT /highlights/1.json
   def update
-    
+
     new_snippets = @highlight.transform_snippets(@snippet)
     @highlight.update(snippets: new_snippets)
 

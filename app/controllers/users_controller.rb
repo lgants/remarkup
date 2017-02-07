@@ -6,11 +6,9 @@ class UsersController < ApplicationController
     def autocomplete
       speech_id = JSON.parse(params[:speech_id])
 
-
       Highlight.where(speech_id: speech_id)
       @users = User.joins(:highlights).where("highlights.speech_id = #{speech_id}").where("first_name ILIKE ? OR last_name ILIKE ?", "%#{params[:term]}%", "%#{params[:term]}%")
       @speech = Speech.find(speech_id)
-
 
       respond_to do |format|
         format.html
@@ -48,7 +46,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        session[:user_id] = @user.id
+        format.html { redirect_to root_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }

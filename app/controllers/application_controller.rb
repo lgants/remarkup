@@ -11,11 +11,11 @@ class ApplicationController < ActionController::Base
   end
 
   def moderator?
-    @current_user.moderator = true ? true : false
+    @current_user.moderator
   end
 
   def admin?
-    @current_user.admin = true ? true : false
+    @current_user.admin
   end
 
   def authenticate_user
