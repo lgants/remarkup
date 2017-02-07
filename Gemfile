@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 gem 'paperclip', '~> 4.1'
 # Use will_paginate gem to support load more button
 gem 'will_paginate', '~> 3.1.0'
+# Use jquery as the JavaScript library
+gem "jquery-rails"
 # Use jquery UI Rails gem for search box with autocomplete text
 gem 'jquery-ui-rails'
 # Use gon to access Ruby variables in JS variables client-side
@@ -36,8 +38,6 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
